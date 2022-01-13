@@ -1,0 +1,520 @@
+/* stylelint-disable property-no-vendor-prefix */
+/* Bootstrap overrides */
+$grid-gutter-width: 20px;
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+/* App vars */
+$box-radius: 10px;
+$form-element-radius: 6px;
+$button-element-radius: 24px;
+$default-font-size: 16px;
+$default-font: "proxima-nova", sans-serif;
+$max-width: 767px;
+
+/* Import themes */
+@import "app-dark";
+@import "app-light";
+@import "app-moonlight";
+@import "app-royal";
+
+html,
+body {
+  box-sizing: border-box;
+  display: flex;
+  font-family: $default-font;
+  font-size: $default-font-size;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 300;
+  line-height: 1.2;
+  min-height: 100vh;
+  overscroll-behavior-y: contain;
+  padding: 0;
+  scroll-behavior: smooth;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 100vw;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-around;
+  width: 100vw;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.root {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.xumm-header {
+  display: flex;
+  padding: 8px 20px 0;
+
+  span {
+    flex-grow: 1;
+    font-weight: 700;
+    padding: 6px 0;
+
+    @media (min-width: 375px) {
+      font-size: 20px;
+    }
+  }
+}
+
+header {
+  padding-bottom: 12px;
+  z-index: 100;
+
+  .account {
+    display: flex;
+    margin: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+      margin-top: 10px;
+    }
+
+    .account-address {
+      font-size: 12px;
+      padding: 0 0 0 20px;
+
+      @media (min-width: 375px) {
+        font-size: $default-font-size;
+      }
+    }
+
+    .account-entries {
+      flex-grow: 1;
+      padding: 0 0 0 20px;
+    }
+
+    .account-last-scan {
+      flex-grow: 0;
+      padding: 0 20px 0 0;
+      text-align: right;
+    }
+  }
+}
+
+.page-title {
+  font-size: calc($default-font-size * 1.25);
+  font-weight: 700;
+  line-height: 1;
+  padding: 10px 20px;
+}
+
+footer {
+  bottom: 0;
+  height: 78px;
+  overflow: hidden;
+  padding: 0 20px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: $max-width;
+    width: 100%;
+  }
+
+  .f-icon {
+    font-size: 32px;
+    padding: 12px 12px 18px;
+
+    .icon-text {
+      font-size: 11px;
+      margin: 4px 0 0;
+    }
+
+    &:first-child {
+      padding-left: 2px;
+    }
+
+    &:last-child {
+      padding-right: 2px;
+    }
+
+    &.filter-icon {
+      font-size: 28px;
+    }
+  }
+}
+
+main {
+  padding: 0 0 52px;
+}
+
+.transactions {
+  padding: 0 $grid-gutter-width;
+
+  .no-transactions-found,
+  .tx-msg {
+    text-align: center;
+  }
+
+  .tx-row {
+    display: flex;
+    flex-direction: row;
+
+    .tx-col-left {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .tx-val {
+      margin: 0 0 8px;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      label {
+        display: block;
+        margin: 0 0 2px;
+      }
+    }
+
+    .tx-col-right {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      label,
+      div {
+        text-align: right;
+      }
+    }
+  }
+}
+
+.export-fields {
+  display: flex;
+  flex-wrap: wrap;
+
+  span {
+    border-radius: $form-element-radius;
+    margin: 0 6px 6px 0;
+    padding: 8px 10px;
+
+    &:nth-last-child(2) {
+      margin-right: 12px;
+    }
+
+    &:last-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+.card {
+  border-radius: $box-radius;
+  margin-bottom: $grid-gutter-width;
+  padding: 15px;
+}
+
+.form-group {
+  margin: 0;
+  max-width: $max-width;
+  padding: 0 20px 20px;
+}
+
+/* Buttons */
+.buttons {
+  .btn {
+    margin: 0 10px 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.btn {
+  border: 0;
+  border-radius: $button-element-radius;
+  cursor: pointer;
+  font-size: $default-font-size;
+  font-weight: 300;
+  line-height: 1;
+  padding: 10px 20px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-mono {
+  font-weight: 700;
+}
+
+/* Form elements */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  border-radius: $form-element-radius;
+  font-size: $default-font-size;
+  height: 36px;
+  line-height: 1;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  border-radius: $form-element-radius;
+  font-size: $default-font-size;
+  height: 36px;
+  line-height: 1;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+/* HTML elements */
+p {
+  line-height: 1;
+  margin: 0;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 200;
+  line-height: 1;
+  margin: 0 0 5px;
+  padding: 0;
+
+  button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 0 5px;
+    outline: inherit;
+    padding: 0;
+  }
+}
+
+/* Spinner */
+.lds-hourglass {
+  display: block;
+  height: 32px;
+  margin: 10px auto 0;
+  position: relative;
+  width: 32px;
+}
+
+.lds-hourglass {
+  &::after {
+    animation: lds-hourglass 1.2s infinite;
+    border: 8px solid #fff;
+    border-color: #fff transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    content: " ";
+    display: block;
+    height: 0;
+    margin: 8px;
+    width: 0;
+  }
+}
+@keyframes lds-hourglass {
+  0% {
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transform: rotate(0);
+  }
+
+  50% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: rotate(900deg);
+  }
+
+  100% {
+    transform: rotate(1800deg);
+  }
+}
+
+/* Custom Date/Time Picker */
+.datetime-input {
+  display: flex;
+
+  .datetime-container {
+    border-radius: $form-element-radius;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+
+    .input-container {
+      flex-grow: 1;
+    }
+
+    .input-clear {
+      align-self: center;
+      flex-grow: 0;
+      font-size: 24px;
+      margin: 2px 8px 0;
+    }
+  }
+
+  .icon {
+    flex-grow: 0;
+    height: 36px;
+    margin: 0 0 0 12px;
+
+    svg {
+      height: 34px;
+      width: 30px;
+    }
+  }
+}
+
+.date-time-elements {
+  .element {
+    display: flex;
+    flex-direction: column;
+    margin-right: 16px;
+    width: 33%;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.date-elements,
+.time-elements {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+/* Modal Styling */
+.modal {
+  .modal-dialog {
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .modal-content {
+    background-color: transparent;
+    border: 0;
+    border-radius: $box-radius;
+  }
+
+  .modal-header {
+    border: 0;
+    border-radius: $box-radius $box-radius 0 0;
+    padding: 0 3px 0 20px;
+
+    button {
+      border: 0;
+      font-size: calc($default-font-size * 2);
+      line-height: 1;
+      padding: 6px 12px;
+    }
+
+    h5 {
+      font-size: calc($default-font-size * 1.125);
+    }
+  }
+
+  .modal-body {
+    border: 0;
+    padding: 0;
+
+    > div {
+      padding: 20px 20px 0;
+    }
+  }
+
+  .modal-footer {
+    border-radius: 0 0 $box-radius $box-radius;
+    border-top: 0;
+    min-height: 20px;
+    padding-top: 0;
+  }
+
+  .help-body {
+    p {
+      font-weight: 100;
+      line-height: 1.2;
+      margin-bottom: 6px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .csv-output,
+  .editable-fields {
+    margin: 0;
+    max-height: 75vh;
+    overflow-wrap: anywhere;
+    overflow-y: scroll;
+  }
+}
+
+.validation-error {
+  padding: 6px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Popover BS Overrides */
+input:focus-within,
+input:hover,
+input:active,
+input:focus,
+input:focus-visible {
+  outline: none;
+}
+
+select:focus-within,
+select:hover,
+select:active,
+select:focus,
+select:focus-visible {
+  outline: none;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+:focus-visible {
+  outline: none;
+}
+
+.btn:hover {
+  color: unset;
+}
+
+.credits {
+  p {
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+}

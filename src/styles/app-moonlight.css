@@ -1,0 +1,146 @@
+.moonlight {
+  /* Buttons */
+  /* Form elements */
+  /* HTML elements */
+  /* Spinner */
+  /* Custom Date/Time Picker */
+  /* Modal Styling */
+  /* Utils */
+}
+
+.moonlight.root {
+  background-color: #181a21;
+  color: #fff !important;
+}
+
+.moonlight header {
+  background-color: #181a21;
+}
+
+.moonlight footer {
+  background-color: #181a21;
+}
+
+.moonlight footer svg {
+  color: #acb1c1;
+}
+
+.moonlight footer .active svg {
+  color: #fff;
+}
+
+.moonlight .export-fields span {
+  background-color: rgba(96, 104, 133, 0.19);
+  color: #fff;
+}
+
+.moonlight .export-fields .edit-fields {
+  background-color: #fff;
+  color: #000;
+}
+
+.moonlight .card {
+  background-color: rgba(96, 104, 133, 0.19);
+  color: #fff;
+}
+
+.moonlight .btn-mono {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #000;
+}
+
+.moonlight .btn-primary {
+  background-color: #3052ff;
+  color: #fff;
+}
+
+.moonlight .btn-secondary {
+  background-color: #606885;
+  color: #fff;
+}
+
+.moonlight .btn-danger {
+  background-color: #ff5b5b;
+  color: #fff;
+}
+
+.moonlight select {
+  background: url("data:image/svg+xml;base64,PHN2Zw0KICAgIGlkPSJMYXllcl8xIg0KICAgIGRhdGEtbmFtZT0iTGF5ZXIgMSINCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1heFlNaWQiDQogICAgdmlld0JveD0iMCAwIDQuOTUgMTAiDQo+DQogICAgPGRlZnM+DQogICAgICAgIDxzdHlsZT4uY2xzLTF7ZmlsbDp0cmFuc3BhcmVudDt9LmNscy0ye2ZpbGw6I2ZmZjt9PC9zdHlsZT4NCiAgICA8L2RlZnM+DQogICAgPHRpdGxlPmFycm93czwvdGl0bGU+DQogICAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPg0KICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz4NCiAgICA8cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+DQo8L3N2Zz4=") no-repeat 100% 50%;
+  background-color: rgba(96, 104, 133, 0.19);
+  color: #fff;
+}
+
+.moonlight input {
+  background-color: rgba(96, 104, 133, 0.19);
+  color: #fff;
+}
+
+.moonlight label {
+  color: #acb1c1;
+}
+
+.moonlight label button,
+.moonlight label svg,
+.moonlight label .fa-info-circle {
+  color: #606885 !important;
+}
+
+.moonlight .lds-hourglass::after {
+  border: 8px solid #fff;
+  border-color: #fff transparent;
+}
+
+.moonlight .datetime-container {
+  background-color: rgba(96, 104, 133, 0.19);
+}
+
+.moonlight .datetime-container input {
+  background-color: transparent;
+}
+
+.moonlight .modal {
+  background-color: rgba(24, 26, 33, 0.5);
+}
+
+.moonlight .modal .modal-content {
+  background-color: #181a21;
+  box-shadow: 4px 3px rgba(172, 177, 193, 0.1);
+}
+
+.moonlight .modal .modal-header {
+  background-color: #3052ff;
+  color: #fff;
+}
+
+.moonlight .modal .modal-header button {
+  background-color: transparent;
+  color: #fff;
+}
+
+.moonlight .modal .modal-body {
+  background-color: #181a21;
+  border-left: 1px solid #606885;
+  border-right: 1px solid #606885;
+  color: #fff;
+}
+
+.moonlight .modal .modal-footer {
+  background-color: #181a21;
+  border-bottom: 1px solid #606885;
+  border-left: 1px solid #606885;
+  border-right: 1px solid #606885;
+}
+
+.moonlight .validation-error {
+  background-color: #ff5b5b;
+  color: #fff;
+}
+
+.moonlight .calendar-icon {
+  color: rgba(96, 104, 133, 0.5);
+}
+
+.moonlight .csv-output code {
+  color: #acb1c1;
+}

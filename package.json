@@ -1,0 +1,59 @@
+{
+  "name": "xumm-xrpl-tx-exporter",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/pro-duotone-svg-icons": "^5.15.4",
+    "@fortawesome/pro-light-svg-icons": "^5.15.4",
+    "@fortawesome/pro-regular-svg-icons": "^5.15.4",
+    "@fortawesome/pro-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "bootstrap": "^5.1.3",
+    "@popperjs/core": "^2.11.0",
+    "file-saver": "^2.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-intl": "^5.23.0",
+    "react-ios-switch": "^0.1.19",
+    "react-scripts": "4.0.3",
+    "ripple-lib-transactionparser": "^0.8.2",
+    "rippled-ws-client": "^1.6.5",
+    "sass": "^1.45.2",
+    "web-vitals": "^1.1.2",
+    "xumm-sdk": "^1.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "stylelint": "^14.2.0",
+    "stylelint-config-sass-guidelines": "^9.0.1"
+  }
+}

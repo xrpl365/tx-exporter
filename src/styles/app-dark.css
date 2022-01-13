@@ -1,0 +1,151 @@
+.dark {
+  /* Buttons */
+  /* Form elements */
+  /* HTML elements */
+  /* Spinner */
+  /* Custom Date/Time Picker */
+  /* Modal Styling */
+  /* Utils */
+}
+
+.dark.root {
+  background-color: black;
+  color: #fff !important;
+}
+
+.dark header {
+  background-color: #000;
+}
+
+.dark footer {
+  background-color: #000;
+}
+
+.dark footer svg {
+  color: #acb1c1;
+}
+
+.dark footer .icon-text {
+  color: #acb1c1;
+}
+
+.dark footer .active svg,
+.dark footer .active .icon-text {
+  color: #fff;
+}
+
+.dark .export-fields span {
+  background-color: rgba(96, 104, 133, 0.25);
+  color: #fff;
+}
+
+.dark .export-fields .edit-fields {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark .card {
+  background-color: rgba(96, 104, 133, 0.25);
+  color: #fff;
+}
+
+.dark .btn-mono {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #000;
+}
+
+.dark .btn-primary {
+  background-color: #3052ff;
+  color: #fff;
+}
+
+.dark .btn-secondary {
+  background-color: #606885;
+  color: #fff;
+}
+
+.dark .btn-danger {
+  background-color: #ff5b5b;
+  color: #fff;
+}
+
+.dark select {
+  background: url("data:image/svg+xml;base64,PHN2Zw0KICAgIGlkPSJMYXllcl8xIg0KICAgIGRhdGEtbmFtZT0iTGF5ZXIgMSINCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1heFlNaWQiDQogICAgdmlld0JveD0iMCAwIDQuOTUgMTAiDQo+DQogICAgPGRlZnM+DQogICAgICAgIDxzdHlsZT4uY2xzLTF7ZmlsbDp0cmFuc3BhcmVudDt9LmNscy0ye2ZpbGw6I2ZmZjt9PC9zdHlsZT4NCiAgICA8L2RlZnM+DQogICAgPHRpdGxlPmFycm93czwvdGl0bGU+DQogICAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPg0KICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz4NCiAgICA8cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+DQo8L3N2Zz4=") no-repeat 100% 50%;
+  background-color: rgba(96, 104, 133, 0.25);
+  color: #fff;
+}
+
+.dark input {
+  background-color: rgba(96, 104, 133, 0.25);
+  color: #fff;
+}
+
+.dark label {
+  color: #acb1c1;
+}
+
+.dark label button,
+.dark label svg,
+.dark label .fa-info-circle {
+  color: #606885 !important;
+}
+
+.dark .lds-hourglass::after {
+  border: 8px solid #fff;
+  border-color: #fff transparent;
+}
+
+.dark .datetime-container {
+  background-color: rgba(96, 104, 133, 0.25);
+}
+
+.dark .datetime-container input {
+  background-color: transparent;
+}
+
+.dark .modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dark .modal .modal-content {
+  background-color: black;
+  box-shadow: 4px 3px rgba(172, 177, 193, 0.1);
+}
+
+.dark .modal .modal-header {
+  background-color: #3052ff;
+  color: #fff;
+}
+
+.dark .modal .modal-header button {
+  background-color: transparent;
+  color: #fff;
+}
+
+.dark .modal .modal-body {
+  background-color: black;
+  border-left: 1px solid #606885;
+  border-right: 1px solid #606885;
+  color: #fff;
+}
+
+.dark .modal .modal-footer {
+  background-color: black;
+  border-bottom: 1px solid #606885;
+  border-left: 1px solid #606885;
+  border-right: 1px solid #606885;
+}
+
+.dark .validation-error {
+  background-color: #ff5b5b;
+  color: #fff;
+}
+
+.dark .calendar-icon {
+  color: #acb1c1;
+}
+
+.dark .csv-output code {
+  color: #acb1c1;
+}

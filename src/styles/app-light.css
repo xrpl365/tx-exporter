@@ -1,0 +1,150 @@
+.light {
+  /* Buttons */
+  /* Form elements */
+  /* HTML elements */
+  /* Spinner */
+  /* Custom Date/Time Picker */
+  /* Modal Styling */
+  /* Utils */
+}
+
+.light.root {
+  background-color: #fff;
+  color: #000 !important;
+}
+
+.light header {
+  background-color: #fff;
+}
+
+.light footer {
+  background-color: #fff;
+}
+
+.light footer svg {
+  color: #acb1c1;
+}
+
+.light footer .active svg {
+  color: #000;
+}
+
+.light .export-fields span {
+  background-color: #f8fafd;
+  border: 1px solid #ecf2fa;
+  color: #000;
+}
+
+.light .export-fields .edit-fields {
+  background-color: #000;
+  color: #fff;
+}
+
+.light .card {
+  background-color: #f8fafd;
+  border: 1px solid #ecf2fa;
+  color: #000;
+}
+
+.light .btn-mono {
+  background-color: #000;
+  color: #fff;
+}
+
+.light .btn-primary {
+  background-color: #3052ff;
+  color: #fff;
+}
+
+.light .btn-secondary {
+  background-color: #f8fafd;
+  border: 1px solid #ecf2fa;
+  color: #000;
+}
+
+.light .btn-danger {
+  background-color: #ff5b5b;
+  color: #fff;
+}
+
+.light select {
+  background: url("data:image/svg+xml;base64,PHN2Zw0KICAgIGlkPSJMYXllcl8xIg0KICAgIGRhdGEtbmFtZT0iTGF5ZXIgMSINCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1heFlNaWQiDQogICAgdmlld0JveD0iMCAwIDQuOTUgMTAiDQo+DQogICAgPGRlZnM+DQogICAgICAgIDxzdHlsZT4uY2xzLTF7ZmlsbDp0cmFuc3BhcmVudDt9LmNscy0ye2ZpbGw6IzAwMDt9PC9zdHlsZT4NCiAgICA8L2RlZnM+DQogICAgPHRpdGxlPmFycm93czwvdGl0bGU+DQogICAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPg0KICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz4NCiAgICA8cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+DQo8L3N2Zz4=") no-repeat 100% 50%;
+  background-color: #f8fafd;
+  border: 1px solid #ecf2fa;
+  color: #000;
+}
+
+.light input {
+  background-color: #f8fafd;
+  color: #000;
+}
+
+.light label {
+  color: #1a1a1a;
+}
+
+.light label button,
+.light label svg,
+.light label .fa-info-circle {
+  color: #606885 !important;
+}
+
+.light .lds-hourglass::after {
+  border: 8px solid #000;
+  border-color: #000 transparent;
+}
+
+.light .datetime-container {
+  background-color: #f8fafd;
+  border: 1px solid #ecf2fa;
+}
+
+.light .datetime-container input {
+  background-color: transparent;
+}
+
+.light .modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.light .modal .modal-content {
+  background-color: #f8fafd;
+  box-shadow: none;
+}
+
+.light .modal .modal-header {
+  background-color: #acb1c1;
+  color: #000;
+}
+
+.light .modal .modal-header button {
+  background-color: transparent;
+  color: #000;
+}
+
+.light .modal .modal-body {
+  background-color: #f8fafd;
+  border-left: 1px solid #e4ecf7;
+  border-right: 1px solid #e4ecf7;
+  color: #000;
+}
+
+.light .modal .modal-footer {
+  background-color: #f8fafd;
+  border-bottom: 1px solid #e4ecf7;
+  border-left: 1px solid #e4ecf7;
+  border-right: 1px solid #e4ecf7;
+}
+
+.light .validation-error {
+  background-color: #ff5b5b;
+  color: #fff;
+}
+
+.light .calendar-icon {
+  color: #000;
+}
+
+.light .csv-output code {
+  color: #000;
+}

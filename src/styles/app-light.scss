@@ -1,0 +1,184 @@
+@import "colors";
+
+$background: $white;
+$header-background: $white;
+$footer-background: $white;
+$modal-overlay: rgba($black, 0.5);
+$light-border-color: darken($light, 3%);
+$card-background: $light;
+$input-background: $light;
+$input-border: 1px solid $light-border-color;
+$input-color: $black;
+$primary-color: $black;
+$primary-color-contrast: $white;
+$secondary-color: lighten($black, 10%);
+$modal-background: $light;
+$modal-border-color: darken($light, 5%);
+$modal-drop-shadow: none;
+$modal-header: $silver;
+$switch-button-background: $light;
+$switch-border: 1px solid $light-border-color;
+$footer-icon: $silver;
+$footer-icon-active: $primary-color;
+
+.light {
+  &.root {
+    background-color: $background;
+    color: $primary-color !important;
+  }
+
+  header {
+    background-color: $header-background;
+  }
+
+  footer {
+    background-color: $footer-background;
+
+    svg {
+      color: $footer-icon;
+    }
+
+    .icon-text {
+      color: $footer-icon;
+    }
+
+    .active {
+      svg,
+      .icon-text {
+        color: $footer-icon-active;
+      }
+    }
+  }
+
+  .export-fields {
+    span {
+      background-color: $card-background;
+      border: 1px solid $light-border-color;
+      color: $primary-color;
+    }
+
+    .edit-fields {
+      background-color: $primary-color;
+      color: $primary-color-contrast;
+    }
+  }
+
+  .card {
+    background-color: $card-background;
+    border: 1px solid $light-border-color;
+    color: $primary-color;
+  }
+
+  /* Buttons */
+  .btn-mono {
+    background-color: $black;
+    color: $white;
+  }
+
+  .btn-primary {
+    background-color: $blue;
+    color: $white;
+  }
+
+  .btn-secondary {
+    background-color: $light;
+    border: 1px solid darken($light, 3%);
+    color: $black;
+  }
+
+  .btn-danger {
+    background-color: $red;
+    color: $white;
+  }
+
+  /* Form elements */
+  select {
+    background: url("data:image/svg+xml;base64,PHN2Zw0KICAgIGlkPSJMYXllcl8xIg0KICAgIGRhdGEtbmFtZT0iTGF5ZXIgMSINCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1heFlNaWQiDQogICAgdmlld0JveD0iMCAwIDQuOTUgMTAiDQo+DQogICAgPGRlZnM+DQogICAgICAgIDxzdHlsZT4uY2xzLTF7ZmlsbDp0cmFuc3BhcmVudDt9LmNscy0ye2ZpbGw6IzAwMDt9PC9zdHlsZT4NCiAgICA8L2RlZnM+DQogICAgPHRpdGxlPmFycm93czwvdGl0bGU+DQogICAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPg0KICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz4NCiAgICA8cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+DQo8L3N2Zz4=")
+      no-repeat 100% 50%;
+    background-color: $input-background;
+    border: 1px solid $light-border-color;
+    color: $input-color;
+  }
+
+  input {
+    background-color: $input-background;
+    color: $input-color;
+  }
+
+  /* HTML elements */
+  label {
+    color: $secondary-color;
+
+    button,
+    svg,
+    .fa-info-circle {
+      color: $grey !important;
+    }
+  }
+
+  /* Spinner */
+  .lds-hourglass::after {
+    border: 8px solid $primary-color;
+    border-color: $primary-color transparent;
+  }
+
+  /* Custom Date/Time Picker */
+  .datetime-container {
+    background-color: $input-background;
+    border: 1px solid $light-border-color;
+
+    input {
+      background-color: transparent;
+    }
+  }
+
+  /* Modal Styling */
+  .modal {
+    background-color: $modal-overlay;
+
+    .modal-content {
+      background-color: $modal-background;
+      box-shadow: $modal-drop-shadow;
+    }
+
+    .modal-header {
+      background-color: $modal-header;
+      color: $primary-color;
+
+      button {
+        background-color: transparent;
+        color: $primary-color;
+      }
+    }
+
+    .modal-body {
+      background-color: $modal-background;
+      border-left: 1px solid $modal-border-color;
+      border-right: 1px solid $modal-border-color;
+      color: $primary-color;
+    }
+
+    .modal-footer {
+      background-color: $modal-background;
+      border-bottom: 1px solid $modal-border-color;
+      border-left: 1px solid $modal-border-color;
+      border-right: 1px solid $modal-border-color;
+    }
+  }
+
+  /* Utils */
+  .validation-error {
+    background-color: $red;
+    color: $white;
+  }
+
+  .calendar-icon {
+    color: $black;
+  }
+
+  .csv-output {
+    code {
+      color: $primary-color;
+    }
+  }
+}
