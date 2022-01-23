@@ -6,7 +6,7 @@ import Transaction from "../Transaction/Transaction";
 
 function Transactions(props) {
   const txContext = useContext(TransactionsContext);
-  const transactions = txContext.filteredTransactions;
+  const transactions = txContext.filterTransactions();
   const totalTransactions = txContext.allTransactions;
   const fetchingTransactions = txContext.fetchingTransactions;
   const [loading, setLoading] = useState(true);

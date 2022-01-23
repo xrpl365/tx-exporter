@@ -13,15 +13,13 @@ function Header() {
   const settingsContext = useContext(SettingsContext);
   const txContext = useContext(TransactionsContext);
 
+  const filteredTransactions = txContext.filterTransactions();
+
   const displayEntriesCount = (props) => {
     if (settingsContext.showFee) {
-      if (
-        txContext.filteredTransactions.length < txContext.allTransactions.length
-      ) {
+      if (filteredTransactions.length < txContext.allTransactions.length) {
         return (
-          txContext.filteredTransactions.length +
-          " / " +
-          txContext.allTransactions.length
+          filteredTransactions.length + " / " + txContext.allTransactions.length
         );
       }
       return txContext.allTransactions.length;
@@ -29,10 +27,8 @@ function Header() {
       const transactionCountNoFees = txContext.allTransactions.filter(
         (tx) => tx.is_fee !== 1
       ).length;
-      if (txContext.filteredTransactions.length < transactionCountNoFees) {
-        return (
-          txContext.filteredTransactions.length + " / " + transactionCountNoFees
-        );
+      if (filteredTransactions.length < transactionCountNoFees) {
+        return filteredTransactions.length + " / " + transactionCountNoFees;
       }
       return transactionCountNoFees;
     }

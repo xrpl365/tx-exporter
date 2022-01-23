@@ -202,13 +202,13 @@ export const TransactionsContextProvider = (props) => {
 
   const setFilters = (filters) => {
     dispatchTx({ type: "SET_FILTERS", val: filters });
-    filterTransactions(filters);
+    //filterTransactions(filters);
   };
 
-  const filterTransactions = (filters) => {
+  const filterTransactions = () => {
     // Extract filters
     let filtered = txState.allTransactions.slice();
-    const { startDate, endDate, currency, direction, txType } = filters;
+    const { startDate, endDate, currency, direction, txType } = txState.filters;
 
     if (startDate) {
       filtered = filtered.filter(
@@ -232,7 +232,8 @@ export const TransactionsContextProvider = (props) => {
     if (!settingsContext.showFee) {
       filtered = filtered.filter((tx) => tx.is_fee !== 1);
     }
-    dispatchTx({ type: "SET_FILTERED_TRANSACTIONS", val: filtered });
+    return filtered;
+    //dispatchTx({ type: "SET_FILTERED_TRANSACTIONS", val: filtered });
   };
 
   const getCurrencies = () => {
