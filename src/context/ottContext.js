@@ -64,7 +64,7 @@ export const OTTContextProvider = (props) => {
 
   useEffect(() => {
     try {
-      const sdk = new XummSdkJwt("5c23a995-da61-4e37-92e7-9e44ad7211e2");
+      const sdk = new XummSdkJwt(process.env.REACT_APP_XUMM_API_KEY);
       sdk
         .getOttData()
         .then((c) => {

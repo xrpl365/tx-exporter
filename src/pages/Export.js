@@ -129,7 +129,10 @@ function Export() {
           const data = prepareExportDataForCSV();
           const csv = generateCSV(data);
           const url = await makeLink(csv, "CSV");
-          openExternalUrl(url);
+          // TODO: Need more graceful solution before live
+          setTimeout(() => {
+            openExternalUrl(url);
+          }, 2000);
         } catch (error) {
           alert("Failed to generate download, please report to support");
         }
@@ -138,7 +141,9 @@ function Export() {
         try {
           const data = prepareExportDataForJSON();
           const url = await makeLink(data, "JSON");
-          openExternalUrl(url);
+          setTimeout(() => {
+            openExternalUrl(url);
+          }, 2000);
         } catch (error) {
           alert("Failed to generate download, please report to support");
         }

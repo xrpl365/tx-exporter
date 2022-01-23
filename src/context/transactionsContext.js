@@ -121,8 +121,10 @@ export const TransactionsContextProvider = (props) => {
   const settingsContext = useContext(SettingsContext);
   const [txState, dispatchTx] = useReducer(txReducer, txDefault);
   const [txRefresh, setTxRefresh] = useState(1);
-
-  const { account: rAddress } = ottContext;
+  const rAddress =
+    process.env.REACT_APP_RADDRESS === ""
+      ? ottContext.account
+      : process.env.REACT_APP_RADDRESS;
 
   useEffect(() => {
     const fetchTransactions = async (account) => {
