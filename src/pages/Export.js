@@ -129,10 +129,7 @@ function Export() {
           const data = prepareExportDataForCSV();
           const csv = generateCSV(data);
           const url = await makeLink(csv, "CSV");
-          // TODO: Need more graceful solution before live
-          setTimeout(() => {
-            openExternalUrl(url);
-          }, 2000);
+          openExternalUrl(url);
         } catch (error) {
           alert("Failed to generate download, please report to support");
         }
@@ -141,9 +138,7 @@ function Export() {
         try {
           const data = prepareExportDataForJSON();
           const url = await makeLink(data, "JSON");
-          setTimeout(() => {
-            openExternalUrl(url);
-          }, 2000);
+          openExternalUrl(url);
         } catch (error) {
           alert("Failed to generate download, please report to support");
         }
@@ -187,9 +182,10 @@ function Export() {
       body: JSON.stringify(payload),
     };
 
-    const response = await fetch("https://api.xrpl365.com", requestOptions);
+    const makefileApiURL = process.env.REACT_APP_MAKEFILE_API;
+    const response = await fetch(makefileApiURL, requestOptions);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     return data.file;
   };
