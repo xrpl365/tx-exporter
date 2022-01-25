@@ -68,6 +68,10 @@ export const OTTContextProvider = (props) => {
       sdk
         .getOttData()
         .then((c) => {
+          /* DEBUG */
+          if (process.env.REACT_APP_RADDRESS !== "") {
+            c.account = process.env.REACT_APP_RADDRESS;
+          }
           dispatchOTT({ type: "NEW_OTT", val: c });
         })
         .catch((e) => {
