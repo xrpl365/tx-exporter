@@ -46,8 +46,8 @@ function OutputFields(props) {
     settingsContext.toggleOutputField("CURRENCY");
   };
 
-  const toggleCounterPartyHandler = () => {
-    settingsContext.toggleOutputField("COUNTERPARTY");
+  const toggleIssuerHandler = () => {
+    settingsContext.toggleOutputField("ISSUER");
   };
 
   const toggleIsFeeHandler = () => {
@@ -179,14 +179,14 @@ function OutputFields(props) {
               <div className="form-group col">
                 <label>
                   <FormattedMessage
-                    id="app.export.fields.counterparty"
-                    defaultMessage="Counter Party"
+                    id="app.export.fields.issuer"
+                    defaultMessage="Issuer"
                   />
                 </label>
                 <div>
                   <Switch
-                    checked={settingsContext.fields.counterParty}
-                    onChange={toggleCounterPartyHandler}
+                    checked={settingsContext.fields.issuer}
+                    onChange={toggleIssuerHandler}
                     onColor="rgb(59, 220, 150)"
                     offColor="rgb(172, 177, 193)"
                   />

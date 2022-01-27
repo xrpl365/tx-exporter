@@ -8,7 +8,7 @@ const supportedFormats = [
 
 const supportedDelimiters = [
   { key: "0", value: "," },
-  { key: "1'", value: ";" },
+  { key: "1", value: ";" },
   { key: "2", value: "|" },
 ];
 
@@ -24,7 +24,7 @@ const SettingsDefault = {
     direction: true,
     date: true,
     currency: true,
-    counterParty: false,
+    issuer: false,
     amount: true,
     isFee: true,
     fee: true,
@@ -43,16 +43,7 @@ const SettingsContext = React.createContext({
   setDelimiter: () => {},
   getSupportedDelimiters: () => {},
   getSupportedFormats: () => {},
-  toggleFieldTxType: () => {},
-  toggleFieldDirection: () => {},
-  toggleFieldAmount: () => {},
-  toggleFieldDate: () => {},
-  toggleFieldCurrency: () => {},
-  toggleFieldCounterParty: () => {},
-  toggleFieldIsFee: () => {},
-  toggleFieldFee: () => {},
-  toggleFieldLedger: () => {},
-  toggleFieldHash: () => {},
+  toggleOutputField: () => {},
 });
 
 const settingsReducer = (state, action) => {
@@ -97,8 +88,8 @@ const settingsReducer = (state, action) => {
         ...(action.val === "AMOUNT" && { amount: !state.fields.amount }),
         ...(action.val === "DATE" && { date: !state.fields.date }),
         ...(action.val === "CURRENCY" && { currency: !state.fields.currency }),
-        ...(action.val === "COUNTERPARTY" && {
-          counterParty: !state.fields.counterParty,
+        ...(action.val === "ISSUER" && {
+          issuer: !state.fields.issuer,
         }),
         ...(action.val === "ISFEE" && { isFee: !state.fields.isFee }),
         ...(action.val === "FEE" && { fee: !state.fields.fee }),
@@ -169,8 +160,8 @@ export const SettingsContextProvider = (props) => {
       ...(field === "AMOUNT" && { amount: !settingsState.fields.amount }),
       ...(field === "DATE" && { date: !settingsState.fields.date }),
       ...(field === "CURRENCY" && { currency: !settingsState.fields.currency }),
-      ...(field === "COUNTERPARTY" && {
-        counterParty: !settingsState.fields.counterParty,
+      ...(field === "ISSUER" && {
+        issuer: !settingsState.fields.issuer,
       }),
       ...(field === "ISFEE" && { isFee: !settingsState.fields.isFee }),
       ...(field === "FEE" && { fee: !settingsState.fields.fee }),
@@ -222,7 +213,7 @@ export const SettingsContextProvider = (props) => {
       direction: settingsState.fields.direction,
       date: settingsState.fields.date,
       currency: settingsState.fields.currency,
-      counterParty: settingsState.fields.counterParty,
+      issuer: settingsState.fields.issuer,
       amount: settingsState.fields.amount,
       isFee: settingsState.fields.isFee,
       fee: settingsState.fields.fee,

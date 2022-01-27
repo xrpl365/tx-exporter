@@ -41,8 +41,15 @@ function App() {
         setCurrentPage("OTT");
       }
     }
-    // console.log(localStorage.getItem("storedSettings"));
-    // localStorage.removeItem("storedSettings");
+    let lastVersion = localStorage.getItem("xAppVersion");
+    let currentVersion = parseFloat(process.env.REACT_APP_VERSION);
+    if (lastVersion && typeof (lastVersion === "string")) {
+      lastVersion = parseFloat(lastVersion);
+      if (currentVersion !== lastVersion) {
+        localStorage.removeItem("storedSettings");
+      }
+    }
+    localStorage.setItem("xAppVersion", currentVersion);
   }, [rAddress]);
 
   const showCurrentPage = () => {

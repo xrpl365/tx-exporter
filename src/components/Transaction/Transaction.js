@@ -7,8 +7,34 @@ const getTxType = (txType, isFee) => {
   switch (txType) {
     case "Payment":
       return !isFee ? "app.txtypes.payment" : "app.txtypes.fee";
+    case "OfferCreate":
+      return "app.txtypes.offercreate";
+    case "OfferCancel":
+      return "app.txtypes.offercancel";
     case "TrustSet":
       return "app.txtypes.trustset";
+    case "AccountSet":
+      return "app.txtypes.accountset";
+    case "AccountDelete":
+      return "app.txtypes.accountdelete";
+    case "SetRegularKey":
+      return "app.txtypes.setregularkey";
+    case "SignerListSet":
+      return "app.txtypes.signerlistset";
+    case "EscrowCreate":
+      return "app.txtypes.escrowcreate";
+    case "EscrowFinish":
+      return "app.txtypes.escrowfinish";
+    case "EscrowCancel":
+      return "app.txtypes.escrowcancel";
+    case "PaymentChannelCreate":
+      return "app.txtypes.paymentchannelcreate";
+    case "PaymentChannelFund":
+      return "app.txtypes.paymentchannelfund";
+    case "PaymentChannelClaim":
+      return "app.txtypes.paymentchannelclaim";
+    case "DepositPreauth":
+      return "app.txtypes.depositpreauth";
     default:
       return "app.general.unknown";
   }

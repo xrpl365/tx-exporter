@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import TransactionsContext from "../context/transactionsContext";
 
 import PageHeader from "../components/Shared/PageHeader";
@@ -14,6 +14,8 @@ function Filters(props) {
   const [currency, setCurrency] = useState(txContext.filters.currency);
   const [direction, setDirection] = useState(txContext.filters.direction);
   const [txType, setTxType] = useState(txContext.filters.txType);
+
+  const intl = useIntl();
 
   const setFilters = () => {
     txContext.setFilters({
@@ -61,7 +63,6 @@ function Filters(props) {
   return (
     <main>
       <PageHeader title="app.filters.title" defaultMessage="Filters" />
-
       <div className="form-group">
         <label>
           <FormattedMessage
@@ -75,7 +76,6 @@ function Filters(props) {
         </label>
         <DateTime update={updateStartDateFilter} inputDate={startDate} />
       </div>
-
       <div className="form-group">
         <label>
           <FormattedMessage
@@ -89,7 +89,6 @@ function Filters(props) {
         </label>
         <DateTime update={updateEndDateFilter} inputDate={endDate} />
       </div>
-
       <div className="form-group">
         <label>
           <FormattedMessage
@@ -110,7 +109,6 @@ function Filters(props) {
           ))}
         </select>
       </div>
-
       <div className="form-group">
         <label>
           <FormattedMessage
@@ -129,7 +127,6 @@ function Filters(props) {
           <option value="other">Other</option>
         </select>
       </div>
-
       <div className="form-group">
         <label>
           <FormattedMessage
@@ -143,21 +140,96 @@ function Filters(props) {
         </label>
         <select value={txType} onChange={updateTxTypeFilter}>
           <option value="">All</option>
-          <option value="Payment">Payment</option>
-          <option value="OfferCreate">Offer Create</option>
-          <option value="OfferCancel">Offer Cancel</option>
-          <option value="TrustSet">Trust Set</option>
-          <option value="AccountSet">Account Set</option>
-          <option value="AccountDelete">Account Delete</option>
-          <option value="SetRegularKey">Set Regular Key</option>
-          <option value="SignerListSet">Signer List Set</option>
-          <option value="EscrowCreate">Escrow Create</option>
-          <option value="EscrowFinish">Escrow Finish</option>
-          <option value="EscrowCancel">Escrow Cancel</option>
-          <option value="PaymentChannelCreate">Payment Channel Create</option>
-          <option value="PaymentChannelFund">Payment Channel Fund</option>
-          <option value="PaymentChannelClaim">Payment Channel Claim</option>
-          <option value="DepositPreauth">Deposit Pre-Auth</option>
+          <option value="Payment">
+            {intl.formatMessage({
+              id: "app.txtypes.payment",
+              defaultMessage: "Payment",
+            })}
+          </option>
+          <option value="OfferCreate">
+            {intl.formatMessage({
+              id: "app.txtypes.offercreate",
+              defaultMessage: "Offer Create",
+            })}
+          </option>
+          <option value="OfferCancel">
+            {intl.formatMessage({
+              id: "app.txtypes.offercancel",
+              defaultMessage: "Offer Cancel",
+            })}
+          </option>
+          <option value="TrustSet">
+            {intl.formatMessage({
+              id: "app.txtypes.trustset",
+              defaultMessage: "Trust Set",
+            })}
+          </option>
+          <option value="AccountSet">
+            {intl.formatMessage({
+              id: "app.txtypes.accountset",
+              defaultMessage: "Account Set",
+            })}
+          </option>
+          <option value="AccountDelete">
+            {intl.formatMessage({
+              id: "app.txtypes.accountdelete",
+              defaultMessage: "Account Delete",
+            })}
+          </option>
+          <option value="SetRegularKey">
+            {intl.formatMessage({
+              id: "app.txtypes.setregularkey",
+              defaultMessage: "Set Regular Key",
+            })}
+          </option>
+          <option value="SignerListSet">
+            {intl.formatMessage({
+              id: "app.txtypes.signerlistset",
+              defaultMessage: "Signer List Set",
+            })}
+          </option>
+          <option value="EscrowCreate">
+            {intl.formatMessage({
+              id: "app.txtypes.escrowcreate",
+              defaultMessage: "Escrow Create",
+            })}
+          </option>
+          <option value="EscrowFinish">
+            {intl.formatMessage({
+              id: "app.txtypes.escrowfinish",
+              defaultMessage: "Escrow Finish",
+            })}
+          </option>
+          <option value="EscrowCancel">
+            {intl.formatMessage({
+              id: "app.txtypes.escrowcancel",
+              defaultMessage: "Escrow Cancel",
+            })}
+          </option>
+          <option value="PaymentChannelCreate">
+            {intl.formatMessage({
+              id: "app.txtypes.paymentchannelcreate",
+              defaultMessage: "Payment Channel Create",
+            })}
+          </option>
+          <option value="PaymentChannelFund">
+            {intl.formatMessage({
+              id: "app.txtypes.paymentchannelfund",
+              defaultMessage: "Payment Channel Fund",
+            })}
+          </option>
+          <option value="PaymentChannelClaim">
+            {intl.formatMessage({
+              id: "app.txtypes.paymentchannelclaim",
+              defaultMessage: "Payment Channel Claim",
+            })}
+          </option>
+          <option value="DepositPreauth">
+            {intl.formatMessage({
+              id: "app.txtypes.depositpreauth",
+              defaultMessage: "Deposit Pre-Auth",
+            })}
+          </option>
         </select>
       </div>
 

@@ -17,6 +17,7 @@ function Export() {
   const ottContext = useContext(OTTContext);
   const settingsContext = useContext(SettingsContext);
   const [csvString, setCsvString] = useState();
+  const [downloadButtonDisabled, setDownloadButtonDisabled] = useState(false);
 
   const prepareExportDataForCSV = () => {
     const { fields: exportFields } = settingsContext;
@@ -27,7 +28,7 @@ function Export() {
       exportFields.amount && r.push(row.amount);
       exportFields.date && r.push(row.date);
       exportFields.currency && r.push(row.currency);
-      exportFields.counterparty && r.push(row.counterparty);
+      exportFields.issuer && r.push(row.issuer);
       exportFields.isFee && r.push(row.is_fee);
       exportFields.fee && r.push(row.fee);
       exportFields.ledger && r.push(row.ledger);
@@ -51,7 +52,7 @@ function Export() {
     exportFields.amount && headings.push("amount");
     exportFields.date && headings.push("date");
     exportFields.currency && headings.push("currency");
-    exportFields.counterParty && headings.push("counter_party");
+    exportFields.issuer && headings.push("issuer");
     exportFields.isFee && headings.push("is_fee");
     exportFields.fee && headings.push("fee");
     exportFields.ledger && headings.push("ledger");
@@ -68,7 +69,7 @@ function Export() {
         ...(exportFields.amount && { amount: row.amount }),
         ...(exportFields.date && { date: row.date }),
         ...(exportFields.currency && { currency: row.currency }),
-        ...(exportFields.counterparty && { counterparty: row.counterparty }),
+        ...(exportFields.issuer && { issuer: row.issuer }),
         ...(exportFields.isFee && { is_fee: row.is_fee }),
         ...(exportFields.fee && { fee: row.fee }),
         ...(exportFields.ledger && { ledger: row.ledger }),
@@ -85,7 +86,8 @@ function Export() {
       const del = settingsContext.getSelectedDelimiter();
 
       for (let j = 0; j < row.length; j++) {
-        let innerValue = row[j] === null ? "" : row[j].toString();
+        let innerValue =
+          row[j] === null || row[j] === undefined ? "" : row[j].toString();
         if (row[j] instanceof Date) {
           innerValue = row[j].toLocaleString();
         }
@@ -101,7 +103,6 @@ function Export() {
     for (let i = 0; i < rows.length; i++) {
       csvString += processRow(rows[i]);
     }
-
     return csvString;
   };
 
@@ -123,6 +124,7 @@ function Export() {
   };
 
   const saveToFileHandler = async () => {
+    setDownloadButtonDisabled(true);
     if (typeof window.ReactNativeWebView !== "undefined") {
       if (+settingsContext.outputFormat === 0) {
         try {
@@ -131,43 +133,46 @@ function Export() {
           const url = await makeLink(csv, "CSV");
           openExternalUrl(url);
         } catch (error) {
-          alert("Failed to generate download, please report to support");
+          alert("Failed generating CSV download link for XUMM.");
+          setDownloadButtonDisabled(false);
         }
-      }
-      if (+settingsContext.outputFormat === 1) {
+      } else if (+settingsContext.outputFormat === 1) {
         try {
           const data = prepareExportDataForJSON();
           const url = await makeLink(data, "JSON");
           openExternalUrl(url);
         } catch (error) {
-          alert("Failed to generate download, please report to support");
+          alert("Failed generating JSON download link for XUMM.");
+          setDownloadButtonDisabled(false);
+        }
+      }
+    } else {
+      if (+settingsContext.outputFormat === 0) {
+        try {
+          const data = prepareExportDataForCSV();
+          const csv = generateCSV(data);
+          const blob = new Blob([csv], {
+            type: "text/csv;charset=utf-8;",
+          });
+          saveAs(blob, ottContext.account + ".csv");
+        } catch (error) {
+          alert("Failed generating CSV download link for web");
+          setDownloadButtonDisabled(false);
+        }
+      } else if (+settingsContext.outputFormat === 1) {
+        try {
+          const data = prepareExportDataForJSON();
+          const blob = new Blob([data], {
+            type: "text/json;charset=utf-8;",
+          });
+          saveAs(blob, ottContext.account + ".json");
+        } catch (error) {
+          alert("Failed generating JSON download link for web");
+          setDownloadButtonDisabled(false);
         }
       }
     }
-
-    if (+settingsContext.outputFormat === 0) {
-      try {
-        const data = prepareExportDataForCSV();
-        const csv = generateCSV(data);
-        const blob = new Blob([csv], {
-          type: "text/csv;charset=utf-8;",
-        });
-        saveAs(blob, ottContext.account + ".csv");
-      } catch (error) {
-        alert("Failed to generate download, please report to support");
-      }
-    }
-    if (+settingsContext.outputFormat === 1) {
-      try {
-        const data = prepareExportDataForJSON();
-        const blob = new Blob([data], {
-          type: "text/json;charset=utf-8;",
-        });
-        saveAs(blob, ottContext.account + ".json");
-      } catch (error) {
-        alert("Failed to generate download, please report to support");
-      }
-    }
+    setDownloadButtonDisabled(false);
   };
 
   const makeLink = async (content, fileType) => {
@@ -185,8 +190,6 @@ function Export() {
     const makefileApiURL = process.env.REACT_APP_MAKEFILE_API;
     const response = await fetch(makefileApiURL, requestOptions);
     const data = await response.json();
-    // console.log(data);
-
     return data.file;
   };
 
@@ -309,7 +312,11 @@ function Export() {
         </div>
 
         <div className="form-group buttons">
-          <button className="btn btn-primary" onClick={saveToFileHandler}>
+          <button
+            disabled={downloadButtonDisabled}
+            className="btn btn-primary"
+            onClick={saveToFileHandler}
+          >
             <FormattedMessage
               id="app.export.btn.save"
               defaultMessage="Save to file"
