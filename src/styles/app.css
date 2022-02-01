@@ -11699,8 +11699,29 @@ select:focus-visible {
   color: unset;
 }
 
-.credits p {
+.small-text p {
   font-size: 12px;
   font-style: italic;
   margin-bottom: 6px;
+}
+
+.github-link {
+  background-color: transparent;
+  border: 0;
+  color: #ff5b5b;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 6px;
+  outline: inherit;
+  padding: 0;
+  text-decoration: none;
+}
+
+.temp-beta-note {
+  background-color: #ff5b5b;
+  color: #fff;
+  padding: 6px;
+  text-align: center;
 }

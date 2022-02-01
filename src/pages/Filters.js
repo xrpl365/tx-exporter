@@ -62,6 +62,9 @@ function Filters(props) {
 
   return (
     <main>
+      <div className="temp-beta-note">
+        App is in beta, please report all bugs
+      </div>
       <PageHeader title="app.filters.title" defaultMessage="Filters" />
       <div className="form-group">
         <label>

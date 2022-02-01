@@ -35,8 +35,24 @@ function Settings(props) {
     props.closePage();
   };
 
+  const gitHubHandler = () => {
+    if (typeof window.ReactNativeWebView !== "undefined") {
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({
+          command: "openBrowser",
+          url: "https://github.com/xrpl365/tx-exporter",
+        })
+      );
+    } else {
+      window.open("https://github.com/xrpl365/tx-exporter", "_blank");
+    }
+  };
+
   return (
     <main>
+      <div className="temp-beta-note">
+        App is in beta, please report all bugs
+      </div>
       <PageHeader title="app.setting.title" defaultMessage="Settings" />
 
       <div className="form-group">
@@ -151,14 +167,50 @@ function Settings(props) {
       <div className="form-group">
         <label>
           <FormattedMessage
+            id="app.settings.label.support"
+            defaultMessage="Support"
+          />
+        </label>
+        <div className="small-text">
+          <p>
+            <FormattedMessage
+              id="app.settings.text.support3"
+              defaultMessage="Support message3"
+            />
+          </p>
+          <p>
+            <FormattedMessage
+              id="app.settings.text.support1"
+              defaultMessage="Support message1"
+            />
+          </p>
+          <button
+            className="github-link"
+            onClick={gitHubHandler}
+            rel="noreferrer"
+          >
+            github.com/xrpl365/tx-exporter
+          </button>
+          <p>
+            <FormattedMessage
+              id="app.settings.text.support2"
+              defaultMessage="Support message2"
+            />
+          </p>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <label>
+          <FormattedMessage
             id="app.settings.label.credits"
             defaultMessage="Credits"
           />
         </label>
-        <div className="credits">
+        <div className="small-text">
           <FormattedMessage
-            id="app.settings.link.credits"
-            defaultMessage="About xrpl365"
+            id="app.settings.text.credits"
+            defaultMessage="Credits info"
             values={{
               p: (...chunks) => <p>{chunks}</p>,
               strong: (...chunks) => <strong>{chunks}</strong>,
