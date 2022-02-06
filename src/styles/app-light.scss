@@ -69,6 +69,16 @@ $footer-icon-active: $primary-color;
     color: $primary-color;
   }
 
+  .transactions {
+    .tx-val {
+      button,
+      svg,
+      .fa-info-circle {
+        color: $orange !important;
+      }
+    }
+  }
+
   /* Buttons */
   .btn-mono {
     background-color: $black;

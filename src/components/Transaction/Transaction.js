@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 
 import SettingsContext from "../../context/settingsContext";
+import HelpIcon from "../HelpIcon/HelpIcon";
 
 const getTxType = (txType, isFee) => {
   switch (txType) {
@@ -95,7 +96,15 @@ const displayAmount = (a) => {
           defaultMessage="Amount"
         />
       </label>
-      <div>{a.toString().replace("-", "")}</div>
+      <div>
+        {a.toString().toLowerCase().includes("e") && (
+          <HelpIcon
+            title="app.transaction.help.name.sci"
+            content="app.transaction.help.description.sci"
+          />
+        )}
+        {a.toString().replace("-", "")}
+      </div>
     </>
   );
 };

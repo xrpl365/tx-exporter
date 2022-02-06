@@ -36,6 +36,8 @@
   "app.transaction.zero-transactions-using-filters": "0 transactions using current filters",
   "app.transaction.fetching-notice": "Retrieving transactions from XRPL",
   "app.transaction.fetching-notice-local": "Restoring transactions from local cache",
+  "app.transaction.help.name.sci": "Scientific notation explained",
+  "app.transaction.help.description.sci": "<p>If you are seeing a value in amount that looks invalid, it most likely has an 'E' in it, this is scientific notation, it is not an error.</p><p>Scientific notation is a way of expressing numbers that are too large or too small to be conveniently written in decimal form.</p><p>You can convert the scientific notation to a real number but be prepared for a whole lot of leading zeros.</p>",
   "app.txdirection.sent": "Sent",
   "app.txdirection.received": "Received",
   "app.filters.title": "Filters",

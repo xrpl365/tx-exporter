@@ -49,6 +49,12 @@
   color: #fff;
 }
 
+.dark .transactions .tx-val button,
+.dark .transactions .tx-val svg,
+.dark .transactions .tx-val .fa-info-circle {
+  color: #f8bf4c !important;
+}
+
 .dark .btn-mono {
   background-color: #fff;
   border: 1px solid #fff;

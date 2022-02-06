@@ -1,5 +1,5 @@
 {
-  "app.header.account": "Account",
+  "app.header.account": "French",
   "app.header.account.help.title": "Account explained",
   "app.header.account.help.description": "This is your XRP wallet address, commonly known as an rAddress.",
   "app.header.entries": "Entries",
@@ -36,6 +36,8 @@
   "app.transaction.zero-transactions-using-filters": "0 transactions using current filters",
   "app.transaction.fetching-notice": "Retrieving transactions from XRPL",
   "app.transaction.fetching-notice-local": "Restoring transactions from local cache",
+  "app.transaction.help.name.sci": "Scientific notation explained",
+  "app.transaction.help.description.sci": "<p>If you are seeing a value in amount that looks invalid, it most likely has an 'E' in it, this is scientific notation, it is not an error.</p><p>Scientific notation is a way of expressing numbers that are too large or too small to be conveniently written in decimal form.</p><p>You can convert the scientific notation to a real number but be prepared for a whole lot of leading zeros.</p>",
   "app.txdirection.sent": "Sent",
   "app.txdirection.received": "Received",
   "app.filters.title": "Filters",
@@ -109,6 +111,7 @@
   "app.settings.label.support": "Support",
   "app.settings.text.support1": "Please refer to our github repository here",
   "app.settings.text.support2": "for details of how to report issues, suggest new features or to reach the developers.",
+  "app.settings.text.support3": "This xApp was built and is maintained by XRPL365. Please do not contact XUMM support for help with this app.",
   "app.settings.label.credits": "Credits",
   "app.settings.text.credits": "<p>Written by Chris Dangerfield of xrpl365.</p><p>This is my gift to the XRP community that I have loved being a part of for many years.</p><p>Special thanks to Wietse Wind of XRPL Labs for supporting me with this project.</p><p>This tool is dedicated to my wife and 3 amazing children.</p>",
   "app.footer.transactions": "Transactions",

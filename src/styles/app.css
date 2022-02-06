@@ -10651,6 +10651,12 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.dark .transactions .tx-val button,
+.dark .transactions .tx-val svg,
+.dark .transactions .tx-val .fa-info-circle {
+  color: #606885 !important;
+}
+
 .dark .btn-mono {
   background-color: #fff;
   border: 1px solid #fff;
@@ -11389,6 +11395,16 @@ main {
 .transactions .tx-row .tx-val label {
   display: block;
   margin: 0 0 2px;
+}
+
+.transactions .tx-row .tx-val button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin: 0 5px 0 0;
+  outline: inherit;
+  padding: 0;
 }
 
 .transactions .tx-row .tx-col-right {

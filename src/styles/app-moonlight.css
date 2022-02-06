@@ -25,7 +25,12 @@
   color: #acb1c1;
 }
 
-.moonlight footer .active svg {
+.moonlight footer .icon-text {
+  color: #acb1c1;
+}
+
+.moonlight footer .active svg,
+.moonlight footer .active .icon-text {
   color: #fff;
 }
 
@@ -42,6 +47,12 @@
 .moonlight .card {
   background-color: rgba(96, 104, 133, 0.19);
   color: #fff;
+}
+
+.moonlight .transactions .tx-val button,
+.moonlight .transactions .tx-val svg,
+.moonlight .transactions .tx-val .fa-info-circle {
+  color: #f8bf4c !important;
 }
 
 .moonlight .btn-mono {

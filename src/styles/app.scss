@@ -188,6 +188,16 @@ main {
         display: block;
         margin: 0 0 2px;
       }
+
+      button {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        font-size: 0.8em;
+        margin: 0 5px 0 0;
+        outline: inherit;
+        padding: 0;
+      }
     }
 
     .tx-col-right {

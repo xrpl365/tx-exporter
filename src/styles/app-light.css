@@ -25,7 +25,12 @@
   color: #acb1c1;
 }
 
-.light footer .active svg {
+.light footer .icon-text {
+  color: #acb1c1;
+}
+
+.light footer .active svg,
+.light footer .active .icon-text {
   color: #000;
 }
 
@@ -44,6 +49,12 @@
   background-color: #f8fafd;
   border: 1px solid #ecf2fa;
   color: #000;
+}
+
+.light .transactions .tx-val button,
+.light .transactions .tx-val svg,
+.light .transactions .tx-val .fa-info-circle {
+  color: #f8bf4c !important;
 }
 
 .light .btn-mono {
