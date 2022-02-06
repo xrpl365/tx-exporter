@@ -77,7 +77,9 @@ const txexplorer = async (account, cb, returnTx) => {
               amount:
                 currency !== "XRP" || (currency === "XRP" && isFee === 1)
                   ? mutation.value
-                  : tx.Amount / 1000000,
+                  : tx.Amount
+                  ? tx.Amount / 1000000
+                  : 0,
               is_fee: isFee,
               fee: fee,
               hash: tx.hash,

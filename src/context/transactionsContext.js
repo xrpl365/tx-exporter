@@ -45,7 +45,6 @@ const makeDate = (d) => {
 // Defaults
 const txDefault = {
   allTransactions: [],
-  filteredTransactions: [],
   lastScanDate: null,
   fetchingTransactions: false,
   filters: {
