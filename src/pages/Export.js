@@ -21,7 +21,8 @@ function Export() {
 
   const prepareExportDataForCSV = () => {
     const { fields: exportFields } = settingsContext;
-    const exportTransactions = txContext.filteredTransactions.map((row) => {
+    const filteredTransactions = txContext.filterTransactions();
+    const exportTransactions = filteredTransactions.map((row) => {
       let r = [];
       exportFields.txType && r.push(row.txtype);
       exportFields.direction && r.push(row.direction);
@@ -62,7 +63,8 @@ function Export() {
 
   const prepareExportDataForJSON = () => {
     const { fields: exportFields } = settingsContext;
-    const exportTransactions = txContext.filteredTransactions.map((row) => {
+    const filteredTransactions = txContext.filterTransactions();
+    const exportTransactions = filteredTransactions.map((row) => {
       return {
         ...(exportFields.txType && { tx_type: row.txtype }),
         ...(exportFields.direction && { direction: row.direction }),
