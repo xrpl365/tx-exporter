@@ -11718,10 +11718,3 @@ select:focus-visible {
   padding: 0;
   text-decoration: none;
 }
-
-.temp-beta-note {
-  background-color: #ff5b5b;
-  color: #fff;
-  padding: 6px;
-  text-align: center;
-}

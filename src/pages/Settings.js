@@ -50,9 +50,6 @@ function Settings(props) {
 
   return (
     <main>
-      <div className="temp-beta-note">
-        App is in beta, please report all bugs
-      </div>
       <PageHeader title="app.setting.title" defaultMessage="Settings" />
 
       <div className="form-group">

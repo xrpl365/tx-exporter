@@ -222,9 +222,6 @@ function Export() {
 
   return (
     <main>
-      <div className="temp-beta-note">
-        App is in beta, please report all bugs
-      </div>
       <PageHeader title="app.export.title" defaultMessage="Export" />
 
       <div className="export-page">
