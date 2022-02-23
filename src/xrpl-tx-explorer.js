@@ -36,7 +36,7 @@ const currencyCodeFormat = (string, maxLength = 12) => {
   return "Unknown";
 };
 
-const txexplorer = async (account, cb, returnTx) => {
+const txexplorer = async (account, cb) => {
   const display = (result) => {
     if (result?.transactions) {
       result?.transactions.forEach((r) => {
@@ -61,31 +61,79 @@ const txexplorer = async (account, cb, returnTx) => {
                 ? 1
                 : 0;
 
-            const fee =
+            let fee =
               direction === "sent" && isFee === 0
                 ? (Number(tx?.Fee) / 1000000) * -1
                 : 0;
 
+            let amount = mutation.value
+              ? currency === "XRP"
+                ? parseFloat(mutation.value) - parseFloat(fee)
+                : parseFloat(mutation.value)
+              : 0;
+
+            /* Fee should show in fees, not amounts, override default behavior */
+            if (isFee === 1) {
+              fee = amount;
+              amount = 0;
+            }
+
+            let directionOverride;
+            if (tx.TransactionType === "OfferCreate") {
+              if (direction === "sent") {
+                // there is a fee on sent transactions
+                if (mutation.counterparty === "") {
+                  // xrp was sent, so the fee is included in this mutation, deduct it
+                  amount = parseFloat(mutation.value) - parseFloat(fee);
+                } else {
+                  fee = 0; // No fee on mutations for non-xrp currencies
+                }
+              } else {
+                amount = parseFloat(mutation.value);
+                fee = 0; // No fee when direction is not sent, as it was already paid in a previous TX.
+              }
+
+              /* Fix direction on OfferCreate */
+              directionOverride = amount > 0 ? "received" : "sent";
+            }
+
+            // Add sender and receiver data for payments
+            let sender, receiver;
+            if ((tx.TransactionType === "Payment") & (isFee === 0)) {
+              sender = direction === "sent" ? account : tx.Account;
+              receiver = direction === "received" ? account : tx.Destination;
+            }
+
             cb({
               ledger: tx.ledger_index,
-              direction: direction,
-              txtype: tx.TransactionType,
+              hash: tx.hash,
               date: moment,
+              txtype: tx.TransactionType,
+              direction: directionOverride ? directionOverride : direction,
               currency: currencyCodeFormat(currency),
               issuer: issuer,
-              // Adjusted to show XRP value without fee, as it is shown separately.
-              amount:
-                currency !== "XRP" || (currency === "XRP" && isFee === 1)
-                  ? mutation.value
-                  : tx.Amount
-                  ? tx.Amount / 1000000
-                  : 0,
+              amount: Number(amount.toFixed(6)), // show amounts to a fixed number of places (6), equal to drops.
               is_fee: isFee,
               fee: fee,
-              hash: tx.hash,
-              // _tx: returnTx ? tx : undefined,
-              // _meta: returnTx ? meta : undefined,
+              sender: sender,
+              receiver: receiver,
             });
+
+            if (direction === "sent" && currency === "XRP" && isFee === 0) {
+              // Ensure XRP TX always show fees separate as well as non-xrp currencies
+              cb({
+                ledger: tx.ledger_index,
+                hash: tx.hash,
+                date: moment,
+                txtype: tx.TransactionType,
+                direction: "sent",
+                currency: "XRP",
+                issuer: "",
+                amount: 0,
+                is_fee: 1,
+                fee: fee,
+              });
+            }
           });
         }
       });
@@ -100,7 +148,7 @@ const txexplorer = async (account, cb, returnTx) => {
     const result = await client.send({
       command: "account_tx",
       account,
-      limit: 10,
+      limit: 2,
       marker,
     });
 

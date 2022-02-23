@@ -109,81 +109,111 @@ const displayAmount = (a) => {
   );
 };
 
+const sentOrReceived = (tx) => {
+  if (tx.txtype === "Payment" && tx.is_fee === 0) {
+    return (
+      <div className="tx-row">
+        <div className="tx-col">
+          <div className="tx-val">
+            <label>
+              <FormattedMessage
+                id={
+                  tx.direction === "received"
+                    ? "app.transaction.label.sender"
+                    : "app.transaction.label.recipient"
+                }
+                defaultMessage={tx.direction === "received" ? "From" : "To"}
+              />
+            </label>
+            <div>{tx.direction === "received" ? tx.sender : tx.receiver}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+};
+
 function Transaction(props) {
   const settingsContext = useContext(SettingsContext);
 
   const { tx } = props;
   return (
     <div className="col-md-6">
-      <div className="card tx-row">
-        <div className="tx-col-left">
-          <div className="tx-val">
-            <label>
-              <FormattedMessage
-                id="app.transaction.label.txtype"
-                defaultMessage="Tx type"
-              />
-            </label>
-            <div>
-              <FormattedMessage
-                id={getTxType(tx.txtype, +tx.is_fee === 1)}
-                defaultMessage="Payment"
-              />
+      <div className="card">
+        <div className="tx-row">
+          <div className="tx-col-left">
+            <div className="tx-val">
+              <label>
+                <FormattedMessage
+                  id="app.transaction.label.txtype"
+                  defaultMessage="Type"
+                />
+              </label>
+              <div>
+                <FormattedMessage
+                  id={getTxType(tx.txtype, +tx.is_fee === 1)}
+                  defaultMessage="Payment"
+                />
+              </div>
+            </div>
+            <div className="tx-val">
+              <label>
+                <FormattedMessage
+                  id="app.transaction.label.direction"
+                  defaultMessage="Direction"
+                />
+              </label>
+              <div>
+                <FormattedMessage
+                  id={getTxDirection(tx.direction)}
+                  defaultMessage=""
+                />
+              </div>
+            </div>
+            <div className="tx-val">
+              <label>
+                <FormattedMessage
+                  id="app.transaction.label.date"
+                  defaultMessage="Date"
+                />
+              </label>
+              <div>
+                {new Date(tx.date)
+                  .toISOString()
+                  .replace(/T/, " ")
+                  .replace(/\..+/, "")}
+              </div>
             </div>
           </div>
-          <div className="tx-val">
-            <label>
-              <FormattedMessage
-                id="app.transaction.label.direction"
-                defaultMessage="Direction"
-              />
-            </label>
-            <div>
-              <FormattedMessage
-                id={getTxDirection(tx.direction)}
-                defaultMessage=""
-              />
+          <div className="tx-col-right">
+            <div className="tx-val">
+              <label>
+                <FormattedMessage
+                  id="app.transaction.label.currency"
+                  defaultMessage="Amount"
+                />
+              </label>
+              {displayCurrency(tx.currency)}
             </div>
-          </div>
-          <div className="tx-val">
-            <label>
-              <FormattedMessage
-                id="app.transaction.label.date"
-                defaultMessage="Date"
-              />
-            </label>
-            <div>
-              {new Date(tx.date)
-                .toISOString()
-                .replace(/T/, " ")
-                .replace(/\..+/, "")}
-            </div>
+            <div className="tx-val">{displayAmount(tx.amount)}</div>
+            {!settingsContext.showFee && tx.fee !== 0
+              ? displayFee(tx.fee)
+              : null}
+            {!settingsContext.showFee && tx.txtype === "OfferCreate"
+              ? displayLedger(tx.ledger)
+              : null}
+            {settingsContext.showFee && tx.is_fee === 1
+              ? displayFee(tx.fee)
+              : null}
+            {(settingsContext.showFee &&
+              tx.txtype === "Payment" &&
+              tx.direction === "sent") ||
+            (settingsContext.showFee && tx.txtype === "OfferCreate")
+              ? displayLedger(tx.ledger)
+              : null}
           </div>
         </div>
-        <div className="tx-col-right">
-          <div className="tx-val">
-            <label>
-              <FormattedMessage
-                id="app.transaction.label.currency"
-                defaultMessage="Amount"
-              />
-            </label>
-            {displayCurrency(tx.currency)}
-          </div>
-          <div className="tx-val">{displayAmount(tx.amount)}</div>
-          {!settingsContext.showFee && tx.is_fee === 0 && tx.fee !== 0
-            ? displayFee(tx.fee)
-            : null}
-          {settingsContext.showFee && tx.currency === "XRP" && tx.fee !== 0
-            ? displayFee(tx.fee)
-            : null}
-          {settingsContext.showFee && tx.currency !== "XRP"
-            ? displayLedger(tx.ledger)
-            : null}
-          {settingsContext.showFee && tx.currency === "XRP" && tx.fee === 0
-            ? displayLedger(tx.ledger)
-            : null}
-        </div>
+        {sentOrReceived(tx)}
       </div>
     </div>
   );

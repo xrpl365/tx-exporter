@@ -10654,7 +10654,7 @@ textarea.form-control-lg {
 .dark .transactions .tx-val button,
 .dark .transactions .tx-val svg,
 .dark .transactions .tx-val .fa-info-circle {
-  color: #606885 !important;
+  color: #f8bf4c !important;
 }
 
 .dark .btn-mono {
@@ -10811,6 +10811,12 @@ textarea.form-control-lg {
   color: #000;
 }
 
+.light .transactions .tx-val button,
+.light .transactions .tx-val svg,
+.light .transactions .tx-val .fa-info-circle {
+  color: #f8bf4c !important;
+}
+
 .light .btn-mono {
   background-color: #000;
   color: #fff;
@@ -10965,6 +10971,12 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.moonlight .transactions .tx-val button,
+.moonlight .transactions .tx-val svg,
+.moonlight .transactions .tx-val .fa-info-circle {
+  color: #f8bf4c !important;
+}
+
 .moonlight .btn-mono {
   background-color: #fff;
   border: 1px solid #fff;
@@ -11115,6 +11127,12 @@ textarea.form-control-lg {
 .royal .card {
   background-color: rgba(96, 104, 133, 0.22);
   color: #fff;
+}
+
+.royal .transactions .tx-val button,
+.royal .transactions .tx-val svg,
+.royal .transactions .tx-val .fa-info-circle {
+  color: #f8bf4c !important;
 }
 
 .royal .btn-mono {
@@ -11417,6 +11435,10 @@ main {
 .transactions .tx-row .tx-col-right label,
 .transactions .tx-row .tx-col-right div {
   text-align: right;
+}
+
+.transactions .tx-row .tx-col {
+  margin-top: 8px;
 }
 
 .export-fields {

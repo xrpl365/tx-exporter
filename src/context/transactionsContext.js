@@ -70,19 +70,16 @@ const txReducer = (state, action) => {
       return {
         ...state,
         allTransactions: [...state.allTransactions, action.val],
-        filteredTransactions: [...state.filteredTransactions, action.val],
       };
     case "RESTORE_TXS":
       return {
         ...state,
         allTransactions: action.val,
-        filteredTransactions: action.val,
       };
     case "CLEAR_TX":
       return {
         ...state,
         allTransactions: [],
-        filteredTransactions: [],
         lastScanDate: null,
       };
     case "SET_LAST_SCAN_DATE":
@@ -104,11 +101,6 @@ const txReducer = (state, action) => {
       return {
         ...state,
         filters: action.val,
-      };
-    case "SET_FILTERED_TRANSACTIONS":
-      return {
-        ...state,
-        filteredTransactions: action.val,
       };
     default:
       return txDefault;
@@ -150,14 +142,10 @@ export const TransactionsContextProvider = (props) => {
 
         console.log("Fetch transactions from XRPL");
         const tempTransactions = [];
-        await txexplorer(
-          account,
-          (tx) => {
-            tempTransactions.push(tx);
-            dispatchTx({ type: "ADD_TX", val: tx });
-          },
-          true
-        );
+        await txexplorer(account, (tx) => {
+          tempTransactions.push(tx);
+          dispatchTx({ type: "ADD_TX", val: tx });
+        });
 
         // Cache the ledger output
         try {
@@ -228,10 +216,13 @@ export const TransactionsContextProvider = (props) => {
       filtered = filtered.filter((f) => txType === f.txtype);
     }
     if (!settingsContext.showFee) {
-      filtered = filtered.filter((tx) => tx.is_fee !== 1);
+      filtered = filtered.filter(
+        (tx) =>
+          tx.is_fee === 0 ||
+          (tx.txtype !== "Payment" && tx.txtype !== "OfferCreate")
+      );
     }
     return filtered;
-    //dispatchTx({ type: "SET_FILTERED_TRANSACTIONS", val: filtered });
   };
 
   const getCurrencies = () => {

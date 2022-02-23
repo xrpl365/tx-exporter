@@ -30,6 +30,8 @@ const SettingsDefault = {
     fee: true,
     ledger: false,
     hash: false,
+    sender: false,
+    receiver: false,
   },
 };
 
@@ -95,6 +97,8 @@ const settingsReducer = (state, action) => {
         ...(action.val === "FEE" && { fee: !state.fields.fee }),
         ...(action.val === "LEDGER" && { ledger: !state.fields.ledger }),
         ...(action.val === "HASH" && { hash: !state.fields.hash }),
+        ...(action.val === "SENDER" && { sender: !state.fields.sender }),
+        ...(action.val === "RECEIVER" && { receiver: !state.fields.receiver }),
       };
 
       return {
@@ -167,6 +171,8 @@ export const SettingsContextProvider = (props) => {
       ...(field === "FEE" && { fee: !settingsState.fields.fee }),
       ...(field === "LEDGER" && { ledger: !settingsState.fields.ledger }),
       ...(field === "HASH" && { hash: !settingsState.fields.hash }),
+      ...(field === "SENDER" && { sender: !settingsState.fields.sender }),
+      ...(field === "RECEIVER" && { receiver: !settingsState.fields.receiver }),
     };
     setStoredSettings({
       ...settingsState,
@@ -219,6 +225,8 @@ export const SettingsContextProvider = (props) => {
       fee: settingsState.fields.fee,
       ledger: settingsState.fields.ledger,
       hash: settingsState.fields.hash,
+      sender: settingsState.fields.sender,
+      receiver: settingsState.fields.receiver,
     },
     toggleFeeUsage: toggleFeeUsage,
     togglePinAccount: togglePinAccount,

@@ -25,7 +25,9 @@ function Header() {
       return txContext.allTransactions.length;
     } else {
       const transactionCountNoFees = txContext.allTransactions.filter(
-        (tx) => tx.is_fee !== 1
+        (tx) =>
+          tx.is_fee !== 1 ||
+          (tx.txtype !== "Payment" && tx.txtype !== "OfferCreate")
       ).length;
       if (filteredTransactions.length < transactionCountNoFees) {
         return filteredTransactions.length + " / " + transactionCountNoFees;

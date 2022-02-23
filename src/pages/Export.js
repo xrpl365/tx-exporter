@@ -31,9 +31,12 @@ function Export() {
       exportFields.currency && r.push(row.currency);
       exportFields.issuer && r.push(row.issuer);
       exportFields.isFee && r.push(row.is_fee);
-      exportFields.fee && r.push(row.fee);
+      exportFields.fee &&
+        r.push(settingsContext.showFee && row.is_fee === 0 ? 0 : row.fee);
       exportFields.ledger && r.push(row.ledger);
       exportFields.hash && r.push(row.hash);
+      exportFields.sender && r.push(row.sender);
+      exportFields.receiver && r.push(row.receiver);
       return r;
     });
 
@@ -58,6 +61,8 @@ function Export() {
     exportFields.fee && headings.push("fee");
     exportFields.ledger && headings.push("ledger");
     exportFields.hash && headings.push("hash");
+    exportFields.sender && headings.push("sender");
+    exportFields.receiver && headings.push("receiver");
     return headings;
   };
 
@@ -73,9 +78,13 @@ function Export() {
         ...(exportFields.currency && { currency: row.currency }),
         ...(exportFields.issuer && { issuer: row.issuer }),
         ...(exportFields.isFee && { is_fee: row.is_fee }),
-        ...(exportFields.fee && { fee: row.fee }),
+        ...(exportFields.fee && {
+          fee: settingsContext.showFee && row.is_fee === 0 ? 0 : row.fee,
+        }),
         ...(exportFields.ledger && { ledger: row.ledger }),
         ...(exportFields.hash && { hash: row.hash }),
+        ...(exportFields.sender && { hash: row.sender }),
+        ...(exportFields.receiver && { hash: row.receiver }),
       };
     });
 

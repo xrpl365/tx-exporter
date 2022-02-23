@@ -65,6 +65,14 @@ function OutputFields(props) {
   const toggleHashHandler = () => {
     settingsContext.toggleOutputField("HASH");
   };
+
+  const toggleSenderHandler = () => {
+    settingsContext.toggleOutputField("SENDER");
+  };
+
+  const toggleReceiverHandler = () => {
+    settingsContext.toggleOutputField("RECEIVER");
+  };
   return (
     <>
       <div className="export-fields">
@@ -255,6 +263,40 @@ function OutputFields(props) {
                   <Switch
                     checked={settingsContext.fields.hash}
                     onChange={toggleHashHandler}
+                    onColor="rgb(59, 220, 150)"
+                    offColor="rgb(172, 177, 193)"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group col">
+                <label>
+                  <FormattedMessage
+                    id="app.export.fields.sender"
+                    defaultMessage="Sender"
+                  />
+                </label>
+                <div>
+                  <Switch
+                    checked={settingsContext.fields.sender}
+                    onChange={toggleSenderHandler}
+                    onColor="rgb(59, 220, 150)"
+                    offColor="rgb(172, 177, 193)"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group col">
+                <label>
+                  <FormattedMessage
+                    id="app.export.fields.receiver"
+                    defaultMessage="Receiver"
+                  />
+                </label>
+                <div>
+                  <Switch
+                    checked={settingsContext.fields.receiver}
+                    onChange={toggleReceiverHandler}
                     onColor="rgb(59, 220, 150)"
                     offColor="rgb(172, 177, 193)"
                   />
