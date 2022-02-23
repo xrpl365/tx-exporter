@@ -8,6 +8,17 @@ If you have general questions or feature requests please post under the discussi
 
 Bugs should be reported under issues, with as much detail as possible.
 
+# Recent Updates
+
+23rd February 2022
+Release 1.06
+
+- Includes bug fixes for incorrect offer values
+- Improvements to offer transactions, displaying amounts exchanged
+- Fee separation option on all TX, including XRP payments and offers
+- Improvements to value rounding and decimal place display
+- Addition of sender and receiver addresses for payments
+
 # Frequently Asked Questions
 
 Please check these FAQs before raising support queries.

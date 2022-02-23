@@ -46,7 +46,7 @@ function App() {
     if (lastVersion && typeof (lastVersion === "string")) {
       lastVersion = parseFloat(lastVersion);
       if (currentVersion !== lastVersion) {
-        localStorage.removeItem("storedSettings");
+        localStorage.clear();
       }
     }
     localStorage.setItem("xAppVersion", currentVersion);
