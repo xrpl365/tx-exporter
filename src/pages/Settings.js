@@ -54,56 +54,28 @@ function Settings(props) {
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.pinaccount"
-            defaultMessage="Show XRP fees"
-          />
-          <HelpIcon
-            title="app.settings.help.pinaccount.title"
-            content="app.settings.help.pinaccount.description"
-          />
+          <FormattedMessage id="app.settings.label.pinaccount" defaultMessage="Show XRP fees" />
+          <HelpIcon title="app.settings.help.pinaccount.title" content="app.settings.help.pinaccount.description" />
         </label>
         <div>
-          <Switch
-            checked={settingsContext.pinAccount}
-            onChange={pinAccountChangeHandler}
-            onColor="rgb(59, 220, 150)"
-            offColor="rgb(172, 177, 193)"
-          />
+          <Switch checked={settingsContext.pinAccount} onChange={pinAccountChangeHandler} onColor="rgb(59, 220, 150)" offColor="rgb(172, 177, 193)" />
         </div>
       </div>
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.showfee"
-            defaultMessage="Show XRP fees"
-          />
-          <HelpIcon
-            title="app.settings.help.showfee.title"
-            content="app.settings.help.showfee.description"
-          />
+          <FormattedMessage id="app.settings.label.showfee" defaultMessage="Show XRP fees" />
+          <HelpIcon title="app.settings.help.showfee.title" content="app.settings.help.showfee.description" />
         </label>
         <div>
-          <Switch
-            checked={settingsContext.showFee}
-            onChange={feeChangeHandler}
-            onColor="rgb(59, 220, 150)"
-            offColor="rgb(172, 177, 193)"
-          />
+          <Switch checked={settingsContext.showFee} onChange={feeChangeHandler} onColor="rgb(59, 220, 150)" offColor="rgb(172, 177, 193)" />
         </div>
       </div>
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.language"
-            defaultMessage="Language"
-          />
-          <HelpIcon
-            title="app.settings.help.language.title"
-            content="app.settings.help.language.description"
-          />
+          <FormattedMessage id="app.settings.label.language" defaultMessage="Language" />
+          <HelpIcon title="app.settings.help.language.title" content="app.settings.help.language.description" />
         </label>
         <div>
           <select value={ottContext.locale} onChange={selectLanguage}>
@@ -118,14 +90,8 @@ function Settings(props) {
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.ledger-cache"
-            defaultMessage="Ledger cache"
-          />
-          <HelpIcon
-            title="app.settings.help.ledger-cache.title"
-            content="app.settings.help.ledger-cache.description"
-          />
+          <FormattedMessage id="app.settings.label.ledger-cache" defaultMessage="Ledger cache" />
+          <HelpIcon title="app.settings.help.ledger-cache.title" content="app.settings.help.ledger-cache.description" />
         </label>
         <div>
           <select value={settingsContext.txExpiry} onChange={txExpiryHandler}>
@@ -141,21 +107,11 @@ function Settings(props) {
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.refresh"
-            defaultMessage="Refresh ledger cache"
-          />
-          <HelpIcon
-            title="app.settings.help.refresh.title"
-            content="app.settings.help.refresh.description"
-          />
+          <FormattedMessage id="app.settings.label.refresh" defaultMessage="Refresh ledger cache" />
+          <HelpIcon title="app.settings.help.refresh.title" content="app.settings.help.refresh.description" />
         </label>
         <div>
-          <button
-            className="btn btn-danger"
-            style={{ marginTop: "4px" }}
-            onClick={refreshLedgerHandler}
-          >
+          <button className="btn btn-danger" style={{ marginTop: "4px" }} onClick={refreshLedgerHandler}>
             Refresh Ledger
           </button>
         </div>
@@ -163,46 +119,27 @@ function Settings(props) {
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.support"
-            defaultMessage="Support"
-          />
+          <FormattedMessage id="app.settings.label.support" defaultMessage="Support" />
         </label>
         <div className="small-text">
           <p>
-            <FormattedMessage
-              id="app.settings.text.support3"
-              defaultMessage="Support message3"
-            />
+            <FormattedMessage id="app.settings.text.support3" defaultMessage="Support message3" />
           </p>
           <p>
-            <FormattedMessage
-              id="app.settings.text.support1"
-              defaultMessage="Support message1"
-            />
+            <FormattedMessage id="app.settings.text.support1" defaultMessage="Support message1" />
           </p>
-          <button
-            className="github-link"
-            onClick={gitHubHandler}
-            rel="noreferrer"
-          >
+          <button className="github-link" onClick={gitHubHandler} rel="noreferrer">
             github.com/xrpl365/tx-exporter
           </button>
           <p>
-            <FormattedMessage
-              id="app.settings.text.support2"
-              defaultMessage="Support message2"
-            />
+            <FormattedMessage id="app.settings.text.support2" defaultMessage="Support message2" />
           </p>
         </div>
       </div>
 
       <div className="form-group">
         <label>
-          <FormattedMessage
-            id="app.settings.label.credits"
-            defaultMessage="Credits"
-          />
+          <FormattedMessage id="app.settings.label.credits" defaultMessage="Credits" />
         </label>
         <div className="small-text">
           <FormattedMessage

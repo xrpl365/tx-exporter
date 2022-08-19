@@ -31,12 +31,13 @@ function Export() {
       exportFields.currency && r.push(row.currency);
       exportFields.issuer && r.push(row.issuer);
       exportFields.isFee && r.push(row.is_fee);
-      exportFields.fee &&
-        r.push(settingsContext.showFee && row.is_fee === 0 ? 0 : row.fee);
+      exportFields.fee && r.push(settingsContext.showFee && row.is_fee === 0 ? 0 : row.fee);
       exportFields.ledger && r.push(row.ledger);
       exportFields.hash && r.push(row.hash);
       exportFields.sender && r.push(row.sender);
       exportFields.receiver && r.push(row.receiver);
+      exportFields.destinationTag && r.push(row.destinationTag);
+      exportFields.sourceTag && r.push(row.sourceTag);
       return r;
     });
 
@@ -63,6 +64,8 @@ function Export() {
     exportFields.hash && headings.push("hash");
     exportFields.sender && headings.push("sender");
     exportFields.receiver && headings.push("receiver");
+    exportFields.destinationTag && headings.push("destinationTag");
+    exportFields.sourceTag && headings.push("sourceTag");
     return headings;
   };
 
@@ -83,8 +86,10 @@ function Export() {
         }),
         ...(exportFields.ledger && { ledger: row.ledger }),
         ...(exportFields.hash && { hash: row.hash }),
-        ...(exportFields.sender && { hash: row.sender }),
-        ...(exportFields.receiver && { hash: row.receiver }),
+        ...(exportFields.sender && { sender: row.sender }),
+        ...(exportFields.receiver && { receiver: row.receiver }),
+        ...(exportFields.destinationTag && { destinationTag: row.destinationTag }),
+        ...(exportFields.sourceTag && { sourceTag: row.sourceTag }),
       };
     });
 
@@ -97,8 +102,7 @@ function Export() {
       const del = settingsContext.getSelectedDelimiter();
 
       for (let j = 0; j < row.length; j++) {
-        let innerValue =
-          row[j] === null || row[j] === undefined ? "" : row[j].toString();
+        let innerValue = row[j] === null || row[j] === undefined ? "" : row[j].toString();
         if (row[j] instanceof Date) {
           innerValue = row[j].toLocaleString();
         }
@@ -236,20 +240,11 @@ function Export() {
       <div className="export-page">
         <div className="form-group">
           <label>
-            <FormattedMessage
-              id="app.export.label.format"
-              defaultMessage="Delimiter"
-            />
-            <HelpIcon
-              title="app.export.help.format.title"
-              content="app.export.help.format.description"
-            />
+            <FormattedMessage id="app.export.label.format" defaultMessage="Delimiter" />
+            <HelpIcon title="app.export.help.format.title" content="app.export.help.format.description" />
           </label>
           <div>
-            <select
-              value={settingsContext.outputFormat}
-              onChange={formatChangeHandler}
-            >
+            <select value={settingsContext.outputFormat} onChange={formatChangeHandler}>
               {settingsContext.getSupportedFormats().map((f, index) => (
                 <option key={index} value={f.key}>
                   {f.value}
@@ -261,20 +256,11 @@ function Export() {
         {+settingsContext.outputFormat === 0 && (
           <div className="form-group">
             <label>
-              <FormattedMessage
-                id="app.export.label.delimiter"
-                defaultMessage="Delimiter"
-              />
-              <HelpIcon
-                title="app.export.help.delimiter.title"
-                content="app.export.help.delimiter.description"
-              />
+              <FormattedMessage id="app.export.label.delimiter" defaultMessage="Delimiter" />
+              <HelpIcon title="app.export.help.delimiter.title" content="app.export.help.delimiter.description" />
             </label>
             <div>
-              <select
-                value={settingsContext.delimiter}
-                onChange={delimiterChangeHandler}
-              >
+              <select value={settingsContext.delimiter} onChange={delimiterChangeHandler}>
                 {settingsContext.getSupportedDelimiters().map((d, index) => (
                   <option key={index} value={d.key}>
                     {d.value}
@@ -288,14 +274,8 @@ function Export() {
         {+settingsContext.outputFormat === 0 && (
           <div className="form-group">
             <label>
-              <FormattedMessage
-                id="app.export.label.header"
-                defaultMessage="Include header in output"
-              />
-              <HelpIcon
-                title="app.export.help.header.title"
-                content="app.export.help.header.description"
-              />
+              <FormattedMessage id="app.export.label.header" defaultMessage="Include header in output" />
+              <HelpIcon title="app.export.help.header.title" content="app.export.help.header.description" />
             </label>
             <div>
               <Switch
@@ -310,34 +290,18 @@ function Export() {
 
         <div className="form-group">
           <label>
-            <FormattedMessage
-              id="app.export.label.fields"
-              defaultMessage="Fields"
-            />
-            <HelpIcon
-              title="app.export.help.fields.title"
-              content="app.export.help.fields.description"
-            />
+            <FormattedMessage id="app.export.label.fields" defaultMessage="Fields" />
+            <HelpIcon title="app.export.help.fields.title" content="app.export.help.fields.description" />
           </label>
           <OutputFields headings={generateHeadings()} />
         </div>
 
         <div className="form-group buttons">
-          <button
-            disabled={downloadButtonDisabled}
-            className="btn btn-primary"
-            onClick={saveToFileHandler}
-          >
-            <FormattedMessage
-              id="app.export.btn.save"
-              defaultMessage="Save to file"
-            />
+          <button disabled={downloadButtonDisabled} className="btn btn-primary" onClick={saveToFileHandler}>
+            <FormattedMessage id="app.export.btn.save" defaultMessage="Save to file" />
           </button>
           <button className="btn btn-secondary" onClick={copyToClipboard}>
-            <FormattedMessage
-              id="app.export.btn.copy"
-              defaultMessage="Copy to clipboard"
-            />
+            <FormattedMessage id="app.export.btn.copy" defaultMessage="Copy to clipboard" />
           </button>
         </div>
       </div>
@@ -348,10 +312,7 @@ function Export() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">
-                  <FormattedMessage
-                    id="app.export.copied.title"
-                    defaultMessage="Copied to clipboard"
-                  />
+                  <FormattedMessage id="app.export.copied.title" defaultMessage="Copied to clipboard" />
                 </h5>
                 <button onClick={closeModal} className="btn" aria-label="Close">
                   &times;

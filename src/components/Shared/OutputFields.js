@@ -73,6 +73,12 @@ function OutputFields(props) {
   const toggleReceiverHandler = () => {
     settingsContext.toggleOutputField("RECEIVER");
   };
+  const toggleDestinationTagHandler = () => {
+    settingsContext.toggleOutputField("DESTINATIONTAG");
+  };
+  const toggleSourceTagHandler = () => {
+    settingsContext.toggleOutputField("SOURCETAG");
+  };
   return (
     <>
       <div className="export-fields">
@@ -89,22 +95,16 @@ function OutputFields(props) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">
-                <FormattedMessage
-                  id="app.export.fields.title"
-                  defaultMessage="Output fields"
-                />
+                <FormattedMessage id="app.export.fields.title" defaultMessage="Output fields" />
               </h5>
               <button type="button" data-bs-dismiss="modal" aria-label="Close">
                 &times;
               </button>
             </div>
             <div className="modal-body editable-fields row">
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.txtype"
-                    defaultMessage="Tx Type"
-                  />
+                  <FormattedMessage id="app.export.fields.txtype" defaultMessage="Tx Type" />
                 </label>
                 <div>
                   <Switch
@@ -116,12 +116,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.direction"
-                    defaultMessage="Direction"
-                  />
+                  <FormattedMessage id="app.export.fields.direction" defaultMessage="Direction" />
                 </label>
                 <div>
                   <Switch
@@ -133,12 +130,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.amount"
-                    defaultMessage="Amount"
-                  />
+                  <FormattedMessage id="app.export.fields.amount" defaultMessage="Amount" />
                 </label>
                 <div>
                   <Switch
@@ -150,12 +144,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.date"
-                    defaultMessage="Date"
-                  />
+                  <FormattedMessage id="app.export.fields.date" defaultMessage="Date" />
                 </label>
                 <div>
                   <Switch
@@ -167,12 +158,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.currency"
-                    defaultMessage="Currency"
-                  />
+                  <FormattedMessage id="app.export.fields.currency" defaultMessage="Currency" />
                 </label>
                 <div>
                   <Switch
@@ -184,12 +172,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.issuer"
-                    defaultMessage="Issuer"
-                  />
+                  <FormattedMessage id="app.export.fields.issuer" defaultMessage="Issuer" />
                 </label>
                 <div>
                   <Switch
@@ -201,12 +186,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.isfee"
-                    defaultMessage="Is Fee"
-                  />
+                  <FormattedMessage id="app.export.fields.isfee" defaultMessage="Is Fee" />
                 </label>
                 <div>
                   <Switch
@@ -218,12 +200,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.fee"
-                    defaultMessage="Fee"
-                  />
+                  <FormattedMessage id="app.export.fields.fee" defaultMessage="Fee" />
                 </label>
                 <div>
                   <Switch
@@ -235,12 +214,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.ledger"
-                    defaultMessage="Ledger"
-                  />
+                  <FormattedMessage id="app.export.fields.ledger" defaultMessage="Ledger" />
                 </label>
                 <div>
                   <Switch
@@ -252,12 +228,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.hash"
-                    defaultMessage="Hash"
-                  />
+                  <FormattedMessage id="app.export.fields.hash" defaultMessage="Hash" />
                 </label>
                 <div>
                   <Switch
@@ -269,12 +242,9 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.sender"
-                    defaultMessage="Sender"
-                  />
+                  <FormattedMessage id="app.export.fields.sender" defaultMessage="Sender" />
                 </label>
                 <div>
                   <Switch
@@ -286,17 +256,42 @@ function OutputFields(props) {
                 </div>
               </div>
 
-              <div className="form-group col">
+              <div className="form-group col-4">
                 <label>
-                  <FormattedMessage
-                    id="app.export.fields.receiver"
-                    defaultMessage="Receiver"
-                  />
+                  <FormattedMessage id="app.export.fields.receiver" defaultMessage="Receiver" />
                 </label>
                 <div>
                   <Switch
                     checked={settingsContext.fields.receiver}
                     onChange={toggleReceiverHandler}
+                    onColor="rgb(59, 220, 150)"
+                    offColor="rgb(172, 177, 193)"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group col-4">
+                <label>
+                  <FormattedMessage id="app.export.fields.destination-tag" defaultMessage="Destination Tag" />
+                </label>
+                <div>
+                  <Switch
+                    checked={settingsContext.fields.destinationTag}
+                    onChange={toggleDestinationTagHandler}
+                    onColor="rgb(59, 220, 150)"
+                    offColor="rgb(172, 177, 193)"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group col-4">
+                <label>
+                  <FormattedMessage id="app.export.fields.source-tag" defaultMessage="Source Tag" />
+                </label>
+                <div>
+                  <Switch
+                    checked={settingsContext.fields.sourceTag}
+                    onChange={toggleSourceTagHandler}
                     onColor="rgb(59, 220, 150)"
                     offColor="rgb(172, 177, 193)"
                   />

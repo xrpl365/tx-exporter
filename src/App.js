@@ -35,14 +35,14 @@ function App() {
     if (rAddress) {
       setCurrentPage("Main");
     } else {
-      const isXummApp =
-        new URLSearchParams(document.location.href).get("xAppStyle") || null;
+      const isXummApp = new URLSearchParams(document.location.href).get("xAppStyle") || null;
       if (!isXummApp) {
         setCurrentPage("OTT");
       }
     }
     let lastVersion = localStorage.getItem("xAppVersion");
     let currentVersion = parseFloat(process.env.REACT_APP_VERSION);
+    currentVersion = isNaN(currentVersion) ? 0 : currentVersion;
     if (lastVersion && typeof (lastVersion === "string")) {
       lastVersion = parseFloat(lastVersion);
       if (currentVersion !== lastVersion) {
@@ -77,10 +77,7 @@ function App() {
           {showCurrentPage()}
           {currentPage !== "OTT" && rAddress && (
             <>
-              <Footer
-                pageChange={pageChangeHandler}
-                currentPage={currentPage}
-              />
+              <Footer pageChange={pageChangeHandler} currentPage={currentPage} />
             </>
           )}
           <Modal />

@@ -13,23 +13,13 @@ const currencyCodeFormat = (string, maxLength = 12) => {
     // HEX currency code
     const hex = string.toString().replace(/(00)+$/g, "");
     if (hex.startsWith("02")) {
-      const xlf15d = Buffer.from(hex, "hex")
-        .slice(8)
-        .toString("utf-8")
-        .slice(0, maxLength)
-        .trim();
+      const xlf15d = Buffer.from(hex, "hex").slice(8).toString("utf-8").slice(0, maxLength).trim();
       if (xlf15d.match(/[a-zA-Z0-9]{3,}/) && xlf15d.toLowerCase() !== "xrp") {
         return xlf15d;
       }
     }
-    const decodedHex = Buffer.from(hex, "hex")
-      .toString("utf-8")
-      .slice(0, maxLength)
-      .trim();
-    if (
-      decodedHex.match(/[a-zA-Z0-9]{3,}/) &&
-      decodedHex.toLowerCase() !== "xrp"
-    ) {
+    const decodedHex = Buffer.from(hex, "hex").toString("utf-8").slice(0, maxLength).trim();
+    if (decodedHex.match(/[a-zA-Z0-9]{3,}/) && decodedHex.toLowerCase() !== "xrp") {
       return decodedHex;
     }
   }
@@ -49,28 +39,15 @@ const txexplorer = async (account, cb) => {
         if (Object.keys(balanceChanges).indexOf(account) > -1) {
           const mutations = balanceChanges[account];
           mutations.forEach((mutation) => {
-            const currency =
-              mutation.counterparty === "" ? "XRP" : mutation.currency;
+            const currency = mutation.counterparty === "" ? "XRP" : mutation.currency;
 
-            const issuer =
-              mutation.counterparty === "" ? "" : mutation.counterparty;
+            const issuer = mutation.counterparty === "" ? "" : mutation.counterparty;
 
-            const isFee =
-              direction === "sent" &&
-              Number(mutation.value) * -1 * 1000000 === Number(tx?.Fee)
-                ? 1
-                : 0;
+            const isFee = direction === "sent" && Number(mutation.value) * -1 * 1000000 === Number(tx?.Fee) ? 1 : 0;
 
-            let fee =
-              direction === "sent" && isFee === 0
-                ? (Number(tx?.Fee) / 1000000) * -1
-                : 0;
+            let fee = direction === "sent" && isFee === 0 ? (Number(tx?.Fee) / 1000000) * -1 : 0;
 
-            let amount = mutation.value
-              ? currency === "XRP"
-                ? parseFloat(mutation.value) - parseFloat(fee)
-                : parseFloat(mutation.value)
-              : 0;
+            let amount = mutation.value ? (currency === "XRP" ? parseFloat(mutation.value) - parseFloat(fee) : parseFloat(mutation.value)) : 0;
 
             /* Fee should show in fees, not amounts, override default behavior */
             if (isFee === 1) {
@@ -117,6 +94,8 @@ const txexplorer = async (account, cb) => {
               fee: fee,
               sender: sender,
               receiver: receiver,
+              destinationTag: tx && tx.DestinationTag ? tx.DestinationTag : null,
+              sourceTag: tx && tx.SourceTag ? tx.SourceTag : null,
             });
 
             if (direction === "sent" && currency === "XRP" && isFee === 0) {

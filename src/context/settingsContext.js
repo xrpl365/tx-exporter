@@ -32,6 +32,8 @@ const SettingsDefault = {
     hash: false,
     sender: false,
     receiver: false,
+    destinationTag: false,
+    sourceTag: false,
   },
 };
 
@@ -99,6 +101,12 @@ const settingsReducer = (state, action) => {
         ...(action.val === "HASH" && { hash: !state.fields.hash }),
         ...(action.val === "SENDER" && { sender: !state.fields.sender }),
         ...(action.val === "RECEIVER" && { receiver: !state.fields.receiver }),
+        ...(action.val === "DESTINATIONTAG" && {
+          destinationTag: !state.fields.destinationTag,
+        }),
+        ...(action.val === "SOURCETAG" && {
+          sourceTag: !state.fields.sourceTag,
+        }),
       };
 
       return {
@@ -113,10 +121,7 @@ const settingsReducer = (state, action) => {
 };
 
 export const SettingsContextProvider = (props) => {
-  const [settingsState, dispatchSettings] = useReducer(
-    settingsReducer,
-    SettingsDefault
-  );
+  const [settingsState, dispatchSettings] = useReducer(settingsReducer, SettingsDefault);
 
   // Context functions
   const toggleFeeUsage = () => {
@@ -173,6 +178,12 @@ export const SettingsContextProvider = (props) => {
       ...(field === "HASH" && { hash: !settingsState.fields.hash }),
       ...(field === "SENDER" && { sender: !settingsState.fields.sender }),
       ...(field === "RECEIVER" && { receiver: !settingsState.fields.receiver }),
+      ...(field === "DESTINATIONTAG" && {
+        destinationTag: !settingsState.fields.destinationTag,
+      }),
+      ...(field === "SOURCETAG" && {
+        sourceTag: !settingsState.fields.sourceTag,
+      }),
     };
     setStoredSettings({
       ...settingsState,
@@ -197,8 +208,7 @@ export const SettingsContextProvider = (props) => {
   const getSupportedDelimiters = () => {
     return supportedDelimiters;
   };
-  const getSelectedDelimiter = () =>
-    supportedDelimiters.find((x) => +x.key === +settingsState.delimiter).value;
+  const getSelectedDelimiter = () => supportedDelimiters.find((x) => +x.key === +settingsState.delimiter).value;
 
   useEffect(() => {
     const storedSettings = getStoredSettings();
@@ -227,6 +237,8 @@ export const SettingsContextProvider = (props) => {
       hash: settingsState.fields.hash,
       sender: settingsState.fields.sender,
       receiver: settingsState.fields.receiver,
+      destinationTag: settingsState.fields.destinationTag,
+      sourceTag: settingsState.fields.sourceTag,
     },
     toggleFeeUsage: toggleFeeUsage,
     togglePinAccount: togglePinAccount,
@@ -240,11 +252,7 @@ export const SettingsContextProvider = (props) => {
     toggleOutputField: toggleOutputField,
   };
 
-  return (
-    <SettingsContext.Provider value={contextValue}>
-      {props.children}
-    </SettingsContext.Provider>
-  );
+  return <SettingsContext.Provider value={contextValue}>{props.children}</SettingsContext.Provider>;
 };
 
 export default SettingsContext;
