@@ -10,6 +10,11 @@ Bugs should be reported under issues, with as much detail as possible.
 
 # Recent Updates
 
+19th August 2022
+Release 1.07
+
+- Added support for destination and source tags in export
+
 23rd February 2022
 Release 1.06
 
