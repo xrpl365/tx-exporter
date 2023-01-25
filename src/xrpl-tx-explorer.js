@@ -1,5 +1,107 @@
+const _ = require('lodash')
 const Client = require("rippled-ws-client");
-const { parseBalanceChanges } = require("ripple-lib-transactionparser");
+const { dropsToXRP, normalizeNodes } = require("ripple-lib-transactionparser/src/utils");
+const BigNumber = require('bignumber.js')
+
+// Imported from ripple-lib-transactionparser
+const groupByAddress = (balanceChanges) => {
+  var grouped = _.groupBy(balanceChanges, function(node) {
+    return node.address
+  })
+  return _.mapValues(grouped, function(group) {
+    return _.map(group, function(node) {
+      return node.balance
+    })
+  })
+}
+
+const parseQuantities = (metadata, valueParser) =>{
+  var values = normalizeNodes(metadata).map(function(node) {
+    if (node.entryType === 'AccountRoot') {
+      return [parseXRPQuantity(node, valueParser)]
+    } else if (node.entryType === 'RippleState') {
+      return parseTrustlineQuantity(node, valueParser)
+    }
+    return []
+  })
+  return groupByAddress(_.compact(_.flatten(values)))
+}
+
+const  parseTrustlineQuantity = (node, valueParser) => {
+  var value = valueParser(node)
+
+  if (value === null) {
+    return null
+  }
+
+  /*
+   * A trustline can be created with a non-zero starting balance
+   * If an offer is placed to acquire an asset with no existing trustline,
+   * the trustline can be created when the offer is taken.
+   */
+  var fields = _.isEmpty(node.newFields) ? node.finalFields : node.newFields
+
+  // the balance is always from low node's perspective
+  var result = {
+    address: fields.LowLimit.issuer,
+    balance: {
+      counterparty: fields.HighLimit.issuer,
+      currency: fields.Balance.currency,
+      value: value.toString()
+    }
+  }
+  return [result, flipTrustlinePerspective(result)]
+}
+
+const flipTrustlinePerspective = (quantity) => {
+  var negatedBalance = (new BigNumber(quantity.balance.value)).negated()
+  return {
+    address: quantity.balance.counterparty,
+    balance: {
+      counterparty: quantity.address,
+      currency: quantity.balance.currency,
+      value: negatedBalance.toString()
+    }
+  }
+}
+
+const parseXRPQuantity= (node, valueParser) => {
+  var value = valueParser(node)
+
+  if (value === null) {
+    return null
+  }
+
+  return {
+    address: node.finalFields.Account || node.newFields.Account,
+    balance: {
+      counterparty: '',
+      currency: 'XRP',
+      value: dropsToXRP(value).toString()
+    }
+  }
+}
+
+const computeBalanceChange = (node) => {
+  var value = null
+  if (node.newFields.Balance) {
+    value = parseValue(node.newFields.Balance)
+  } else if (node.previousFields.Balance && node.finalFields.Balance) {
+    value = parseValue(node.finalFields.Balance).minus(
+      parseValue(node.previousFields.Balance))
+  }
+  return value === null ? null : value.isZero() ? null : value
+}
+
+const parseBalanceChanges = (metadata) => {
+  return parseQuantities(metadata, computeBalanceChange)
+}
+
+// What we do here is rounding the value. So when we will compute the balance with final balance - previous balance, this two values will be round.
+// On several transactions, there will be anymore micro balance.
+const parseValue = (value) => {
+  return new BigNumber(new BigNumber(value.value || value).toFixed(6, BigNumber.ROUND_HALF_EVEN))
+}
 
 const currencyCodeFormat = (string, maxLength = 12) => {
   if (string.trim().toLowerCase() === "xrp") {
