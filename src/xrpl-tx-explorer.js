@@ -1,5 +1,5 @@
-const Client = require("rippled-ws-client");
-const { parseBalanceChanges } = require("ripple-lib-transactionparser");
+import Client from 'rippled-ws-client';
+import { getBalanceChanges } from 'xrpl';
 
 const currencyCodeFormat = (string, maxLength = 12) => {
   if (string.trim().toLowerCase() === "xrp") {
@@ -35,13 +35,12 @@ const txexplorer = async (account, cb) => {
         if (tx?.Account === account) direction = "sent";
         if (tx?.Destination === account) direction = "received";
         const moment = new Date((tx.date + 946684800) * 1000).toISOString();
-        const balanceChanges = parseBalanceChanges(meta);
-        if (Object.keys(balanceChanges).indexOf(account) > -1) {
-          const mutations = balanceChanges[account];
-          mutations.forEach((mutation) => {
-            const currency = mutation.counterparty === "" ? "XRP" : mutation.currency;
+        const balanceChanges = getBalanceChanges(meta);
+        balanceChanges.filter(b => b.account === account).forEach((mutations) => {
+          mutations.balances.forEach((mutation) => {
+            const currency = mutation.currency;
 
-            const issuer = mutation.counterparty === "" ? "" : mutation.counterparty;
+            const issuer = mutation.issuer;
 
             const isFee = direction === "sent" && Number(mutation.value) * -1 * 1000000 === Number(tx?.Fee) ? 1 : 0;
 
@@ -59,7 +58,7 @@ const txexplorer = async (account, cb) => {
             if (tx.TransactionType === "OfferCreate") {
               if (direction === "sent") {
                 // there is a fee on sent transactions
-                if (mutation.counterparty === "") {
+                if (currency === "XRP") {
                   // xrp was sent, so the fee is included in this mutation, deduct it
                   amount = parseFloat(mutation.value) - parseFloat(fee);
                 } else {
@@ -91,7 +90,7 @@ const txexplorer = async (account, cb) => {
               issuer: issuer,
               amount: Number(amount.toFixed(6)), // show amounts to a fixed number of places (6), equal to drops.
               is_fee: isFee,
-              fee: fee,
+              fee: tx.TransactionType === "OfferCreate" && isFee === 0 ? 0 : fee,
               sender: sender,
               receiver: receiver,
               destinationTag: tx && tx.DestinationTag ? tx.DestinationTag : null,
@@ -114,7 +113,7 @@ const txexplorer = async (account, cb) => {
               });
             }
           });
-        }
+        })
       });
     }
   };

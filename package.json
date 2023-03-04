@@ -24,15 +24,15 @@
     "react-intl": "^5.23.0",
     "react-ios-switch": "^0.1.19",
     "react-scripts": "4.0.3",
-    "ripple-lib-transactionparser": "^0.8.2",
     "rippled-ws-client": "^1.6.5",
+    "xrpl": "^2.1.0",
     "sass": "^1.45.2",
     "web-vitals": "^1.1.2",
     "xumm-sdk": "^1.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "build:staging": "env-cmd -f .env.staging react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

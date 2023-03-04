@@ -217,9 +217,7 @@ export const TransactionsContextProvider = (props) => {
     }
     if (!settingsContext.showFee) {
       filtered = filtered.filter(
-        (tx) =>
-          tx.is_fee === 0 ||
-          (tx.txtype !== "Payment" && tx.txtype !== "OfferCreate")
+        (tx) => tx.is_fee === 0 || tx.txtype !== "Payment"
       );
     }
     return filtered;
