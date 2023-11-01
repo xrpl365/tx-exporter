@@ -49,3 +49,7 @@ There is a toggle you can set for this in the settings.
 ## How can I export additional data ?
 
 On the export page there is a display of fields that will be exported; use the pen icon to edit this list and export more data.
+
+## I get errors when I build, nagging about font awesome ?
+
+The project uses a pro license for fontawesome, so either get a paid version or remove the paid icons from package.json and update the UI to a different icon library.
