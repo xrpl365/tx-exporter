@@ -1,5 +1,6 @@
 const Client = require("rippled-ws-client");
 const { parseBalanceChanges } = require("ripple-lib-transactionparser");
+const Buffer = require("buffer").Buffer;
 
 const currencyCodeFormat = (string, maxLength = 12) => {
   if (string.trim().toLowerCase() === "xrp") {
@@ -43,11 +44,18 @@ const txexplorer = async (account, cb) => {
 
             const issuer = mutation.counterparty === "" ? "" : mutation.counterparty;
 
-            const isFee = direction === "sent" && Number(mutation.value) * -1 * 1000000 === Number(tx?.Fee) ? 1 : 0;
+            const isFee =
+              direction === "sent" && Number(mutation.value) * -1 * 1000000 === Number(tx?.Fee)
+                ? 1
+                : 0;
 
             let fee = direction === "sent" && isFee === 0 ? (Number(tx?.Fee) / 1000000) * -1 : 0;
 
-            let amount = mutation.value ? (currency === "XRP" ? parseFloat(mutation.value) - parseFloat(fee) : parseFloat(mutation.value)) : 0;
+            let amount = mutation.value
+              ? currency === "XRP"
+                ? parseFloat(mutation.value) - parseFloat(fee)
+                : parseFloat(mutation.value)
+              : 0;
 
             /* Fee should show in fees, not amounts, override default behavior */
             if (isFee === 1) {
